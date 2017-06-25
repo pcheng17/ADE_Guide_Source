@@ -1,0 +1,56 @@
+\subsection*{Sturm-Liouville Theory \small{(a brief review)}}
+\label{SturmLiouville}
+
+The \emph{regular} Sturm-Liouville problem is given by
+\[
+\left\{
+\begin{array}{l}
+(p(x)u')' + q(x)u = -\lambda r(x) u,  \quad a < x < b \\
+B_a[u] := \alpha u(a) + \beta u'(a) = 0 \\
+B_b[u] := \gamma u(b) + \delta u'(b) = 0
+\end{array}
+\right.
+\]
+where $p,p',q,r \in C[a,b]$, $p,r > 0$, $\alpha, \beta, \gamma, \delta \in \R$, $|\alpha|+|\beta| > 0$, $|\gamma| + |\delta| > 0$.
+
+If we define $Lu := (p(x)u')' + q(x) u$ as an operator on the space $V = \{ u \in C^2([a,b]) \, | \, B_a[u] = B_b[u] = 0 \}$, we can show $L$ is self-adjoint with respect to the standard inner product $\langle f,g \rangle = \int_a^b f(x)\overline{g(x)} \, dx$. Thus, the Sturm-Liouville problem would be the weighted eigenvalue problem $Lu = \lambda r(x) u$.
+
+However, if we rewrite the ODE of the Sturm-Liouville problem as
+\[
+\frac{1}{r(x)}\left[ (p(x)u')' + q(x)u \right]= -\lambda u
+\]
+and define $\tilde{L}u := \frac{1}{r(x)}\left[ (p(x)u')' + q(x)u \right]$ as an operator on $V$, we can show that $\tilde{L}$ is self-adjoint with respect to the weighted inner product $\langle f,g \rangle_{r(x)} = \int_a^b f(x) \overline{g(x)} r(x) \, dx$. In this case, the Sturm-Liouville problem would be a regular eigenvalue problem on a weighted inner product.
+
+Either way, we get that our Sturm-Liouville operator is self-adjoint, which means we have some very nice properties:
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\item $L$ is self-adjoint with respect to the standard inner product ($\tilde{L}$ is self-adjoint with respect to the inner product weighted with $r(x)$)
+
+\item The eigenvalues of $L$ and $\tilde{L}$ are real and simple.
+
+\item Eigenfunctions corresponding to distinct eigenvalues are orthogonal.
+
+\item The set of eigenvalues form a sequence $\lambda_0 < \lambda_1 < \cdots < \lambda_n < \cdots$ with $\lambda_n \to \infty$.
+
+\item Let $v_n$ denote the $n$th eigenfunction corresponding to $\lambda_n$. The Rayleigh quotient allows us to find the eigenvalues:
+$$ \lambda_0 = \min_{u \in V} -\dfrac{\langle u, Lu \rangle}{\langle u, u \rangle_{r(x)}}, \quad \quad \lambda_{N+1} = \min_{u \in W_N^{\perp}}   -\dfrac{\langle u, Lu \rangle}{\langle u, u \rangle_{r(x)}} $$
+or
+$$ \lambda_0 = \min_{u \in V} -\dfrac{\langle u, \tilde{L}u \rangle_{r(x)}}{\langle u, u \rangle_{r(x)}}, \quad \quad \lambda_{N+1} = \min_{u \in W_N^{\perp}}   -\dfrac{\langle u, \tilde{L}u \rangle_{r(x)}}{\langle u, u \rangle_{r(x)}} $$
+where $W_N^{\perp} = \{ u \, | \, \langle u, v_n \rangle = 0 \,\, \text{for} \,\, n = 0, 1, \dots, N \}$. It is important to note that the inner product in the denominator of the Rayleigh quotient here is always weighted with $r(x)$ --- this is NOT a typo!
+
+\item The set of eigenfunctions $\{v_n\}$ corresponding to the eigenvalues $\lambda_n$ form a complete orthogonal basis of $V$.
+\end{enumerate}
+
+I don't have a reference for (d), but assuming that result stated in (d) is true, (e) is not too difficult to prove (requires some calculus of variations and integration by parts). Then, the result of (f) follows from both (d) and (e). If you're interested, here's a proof for (f): \url{https://people.math.osu.edu/gerlach.1/math/BVtypset/node76.html}.
+
+
+One final important fact to know --- under some mild conditions, we may write any second-order ODE into Sturm-Liouville form. Consider the following second-order ODE
+$$a(x) y'' + b(x) y' + c(x) y = -\lambda w(x) y, \quad \quad a < x < b $$
+where $a(x) > 0$ on $(a,b)$. Furthermore, suppose we have boundary conditions at $x=a$ and $x=b$. Then,
+$$a(x) y'' + b(x) y' + c(x) y = -\lambda w(x) y  \quad \implies \quad y'' + \frac{b(x)}{a(x)} y' + \frac{c(x)}{a(x)}y = -\lambda \frac{w(x)}{a(x)} y $$
+For ease of notation, define $\tilde{b}(x) := \frac{b(x)}{a(x)}$, $\tilde{c}(x) := \frac{c(x)}{a(x)}$, $r(x) := \frac{w(x)}{a(x)}$. Then, multiplying both sides of the ODE by the integrating factor $k(x) = e^{\int \tilde{b}(x) dx}$ yields
+\begin{align*}
+	 y'' +\tilde{b}(x) y' + \tilde{c}(x) y = -\lambda r(x) y \quad &\implies \quad \left( k(x) y' \right)' + k(x) \tilde{c}(x) y = -\lambda k(x) r(x) y \\
+	 &\implies \quad \frac{1}{k(x)r(x)} \left[ \left( k(x) y' \right)' + k(x) \tilde{c}(x) y \right] = -\lambda y
+\end{align*}
+which is now Sturm-Liouville problem. Remember, depending on what form of the operator we use, we need to weight the inner product correctly.

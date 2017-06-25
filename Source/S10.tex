@@ -1,0 +1,273 @@
+\subsection*{Solution to Spring 2010, \#1}\label{s101}
+There seems to be a typo in the problem, we will show that all eigenvalues must
+be less than $-1$. (It is not uncommon to see people call $\ld$ the
+eigenvalue for the Sturm-Liouville problem $Lu = -\ld u$. But strictly speaking
+from a linear algebra point of view, $-\ld$ is the eigenvalue for $L$ not $+\ld$.)
+
+Let $y$ be an eigenfunction. Then $y$ is not identically zero. We have
+$\ips{y'' - y, y} = \ips{-\ld x^{2}y', y}$, that is,
+$$\int_{0}^{1}y''y - y^{2}\, dx = -\ld \int_{0}^{1}x^{2}y'y\, dx.$$
+Integration by parts yields that
+$$\int_{0}^{1}y''y\, dx = -\int_{0}^{1}y'^{2}\, dx$$
+and
+$$\int_{0}^{1}x^{2}y'y\, dx = \int_{0}^{1}x^{2}(\frac{1}{2}y^{2})'\, dx = -\int_{0}^{1}xy^{2}\, dx.$$
+Therefore
+\begin{align*}
+-\ld = \frac{\int_{0}^{1}y'^{2} + y^{2}\, dx}{\int_{0}^{1}xy^{2}\, dx} \geq \frac{\int_{0}^{1}y'^{2} + y^{2}\, dx}{\int_{0}^{1}y^{2}\, dx} = 1 + \frac{\int_{0}^{1}y'^{2}\, dx}{\int_{0}^{1}y^{2}\, dx} \geq 1.
+\end{align*}
+Thus $\ld \leq -1$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2010, \#2}\label{s102}
+We present two solutions to this problem, one emphasising the important ``$L^{p}$ trick" (see the appendix for a more detailed discussion),
+and another emphasising a maximum principle approach. Note that since $g$ is compactly supported in $\Om$, we actually have
+$u(x, t) = 0$ on $\pr \Om \times [0, \infty)$.
+
+\begin{rem}
+The $L^{p}$ trick may seem a bit more tedious than a maximum principle solution, however it is much more robust approach, especially when a
+maximum principle approach is not so obvious or hard to prove, see for example, Spring 2008 Question 7 or Spring 2014 Question 2.
+\end{rem}
+
+\subsubsection*{``$L^{p}$ trick" Solution}
+As $\Om$ is a bounded domain with smooth boundary, $\Om$ has finite measure. Therefore
+\begin{align}\label{s102eq1}
+\lim_{p \rightarrow \infty}\|u(x, t)\|_{L^{p}_{x}(\Om)} = \|u(x, t)\|_{L^{\infty}_{x}(\Om)}.
+\end{align}
+Thus to control the $L^{\infty}$ norm of $u$, it suffices to control each $L^{p}$ norm. Let $\psi(x) := |x|^{p}$ for $p > 2$.
+Note that $\psi$ is $C^{2}$ for $p > 2$. Let $$E(t) := \int_{\Om}\psi(u)\, dx = \int_{\Om}|u|^{p}\, dx.$$
+Then
+\begin{align*}
+\dot{E}(t) &= \int_{\Om}\psi'(u)u_{t}\, dx = \int_{\Om}\psi'(u)(\Delta u - u)\, dx = -\int_{\Om}\nabla (\psi'(u)) \cdot \nabla u + \psi'(u)u\, dx\\
+&= -\int_{\Om}\psi''(u)\sum_{i = 1}^{n}u_{x_{i}}^{2} + \psi'(u)u\, dx \leq -\int_{\Om}\psi'(u)u\, dx = -p\int_{\Om}\psi(u)\, dx = -pE(t).
+\end{align*}
+where the last equality is because $x(\frac{d}{dx}|x|^{p}) = p|x|^{p}$. Therefore
+by Gronwall's inequality, $E(t) \leq e^{-pt}E(0)$. Taking $1/p$-th powers of both sides gives that
+$$\|u(x, t)\|_{L^{p}_{x}(\Om)} = \bigg(\int_{\Om}|u(x, t)|^{p}\, dx\bigg)^{1/p} \leq e^{-t}\bigg(\int_{\Om}|u(x, 0)|^{p}\, dx\bigg)^{1/p} = e^{-t}\|g\|_{L^{p}(\Om)}.$$
+Using \eqref{s102eq1} yields that
+$$\|u(x, t)\|_{L^{\infty}_{x}(\Om)} \leq e^{-t}\|g\|_{L^{\infty}(\Om)}.$$
+Since $u$ is a $C^{2}$ solution the $L^{\infty}$ norm is just the sup norm and hence it follows that
+$|u(x, t)| \leq e^{-t}\|g\|_{L^{\infty}}$ for all $t > 0$.
+\hfill\qed
+
+\subsubsection*{Maximum Principle Solution}
+Let $v := ue^{t}$. Then $v_{t} = u_{t}e^{t} + ue^{t} = (u_{t} + u)e^{t}$
+and $\Delta v = e^{t}\Delta u$. Therefore
+$v_{t} - \Delta v = (u_{t} + u)e^{t} - e^{t}\Delta u = 0$. Thus we have
+\begin{align*}
+\begin{cases}
+v_{t} - \Delta v = 0 & \text{ in } \Delta \times (0, \infty)\\
+v(x, 0) = g(x) & \text{ in } \Om\\
+v(x, t) = 0 & \text{ in } \pr\Om \times (0, \infty).
+\end{cases}
+\end{align*}
+Therefore by the maximum principle, $v(x, t) \leq \|g\|_{L^{\infty}}$. Replacing $v$ with $-v$ shows that
+$|v(x, t)| \leq \|g\|_{L^{\infty}}$ and hence $|u(x, t)| \leq \|g\|_{L^{\infty}}e^{-t}$ for all $t > 0$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2010, \#3}\label{s103}
+We present two solutions to this problem.
+
+\subsubsection*{Maximum Principle Solution}
+Let $U, v $ be two $C^{2}$ solutions and $w = u - v$. Then
+\begin{align*}
+\begin{cases}
+-\Delta w + a(x)w = 0 & \text{ in } \Om\\
+\pr w/\pr \nu = 0 & \text{ on } \pr\Om.
+\end{cases}
+\end{align*}
+If there exists $x_{0} \in \pr \Om$ such that
+$w(x) < w(x_{0})$ for all $x \in \Om$< then by Hopf's Lemma,
+$\frac{\pr w}{\pr \nu}(x_{0}) > 0$. This is a contradiction
+and hence no such $x_{0}$ exists.
+
+Since $w$ is continuous on the compact set $\ov{\Om}$,
+there exists $x_{0} \in \ov{\Om}$ such that
+$w(x) \leq w(x_{0})$ for all $x \in \ov{\Om}$.
+
+Suppose
+$x_{0} \in \pr\Om$. Then $w(x) \leq w(x_{0})$ for all $x \in \Om$.
+Then by the argument in the previous paragraph, there exists
+an $x' \in \Om$ such that $w(x') = w(x_{0})$. Therefore
+$w$ attains a maximum in the interior of $\ov{\Om}$ and hence
+by the Maximum Principle, $w$ is a constant. Since
+$a(x) > 0$ and $0 = -\Delta w + a(x)w = a(x) w$ (as $w$ is constant),
+it follows that $w \equiv 0$ in this case.
+
+Next suppose $x_{0} \in \Om$. Then again $w$ attains a maximum
+in the interior of $\ov{\Om}$ and hence $w \equiv 0$ by the same
+argument as above in the previous paragraph.
+
+Thus $u \equiv v$ which proves uniqueness.
+\hfill\qed
+
+\subsubsection*{``Energy" Solution}
+Let $w$ be as in the previous solution.
+Suppose $w > 0$ on some open subset $U \subset \Om$. Then
+\begin{align*}
+0 = \int_{\Om}-\Delta w + a(x)w\, dx = \int_{\pr \Om}-\frac{\pr w}{\pr \nu}\, d\sigma + \int_{\Om}a(x)w\, dx \geq \int_{U}a(x)w\, dx > 0
+\end{align*}
+a contradiction. Therefore $w \leq 0$ on $\Om$. However, a similar argument
+shows that we cannot have $w < 0$ on some $V \subset \Om$ and hence $w \geq 0$ on $\Om$. Therefore
+$w \equiv 0$ on $\Om$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2010, \#4}\label{s104}
+\subsubsection*{Solution to $4a$}
+If $u$ was compactly supported, then we would choose
+$$E(t) := \frac{1}{2}\int_{\R}u_{t}^{2} + u_{x}^{2} + u^{2}\, dx.$$
+Then
+$$\dot{E}(t) = \int_{\R}u_{t}u_{tt} + u_{x}u_{xt} + uu_{t}\, dx = \int_{\R}u_{t}u_{tt} - u_{xx}u_{t} + uu_{t}\, dx = \int_{\R}u_{t}(-u) + uu_{t}\, dx = 0.$$
+In the next part, we will show that $u$ is indeed compactly supported.
+\hfill\qed
+
+\subsubsection*{Solution to $4b$}
+We will prove the statement in $d$-dimensions, so we are working with the equation $u_{tt} - \Delta u = -u$ in $\R^{d} \times (0, \infty)$
+and $u(x, 0) = g(x)$, $u_{t}(x, 0) = h(x)$ with $g, h \in C_{c}(\R^{d})$. Let $u \equiv u_{t} \equiv 0$ in $B(x_{0}, t_{0})$ (ball of radius $t_{0}$ centered at $x_{0}$), then we claim
+$u \equiv 0$ in the cone $C = \{(x, t): 0 \leq t \leq t_{0}, |x - x_{0}| \leq t_{0} - t\}$.
+
+The proof will be similar to the finite speed of propagation proof for the wave equation.
+For $0 \leq t \leq t_{0}$, let
+$$E(t) := \frac{1}{2}\int_{B(x_{0}, t_{0} - t)}u_{t}^{2} + |\nabla u|^{2} + u^{2}\, dx.$$
+Then
+\begin{align*}
+\dot{E}(t) &= \int_{B(x_{0}, t_{0} - t)}u_{t}u_{tt} + \nabla u \cdot \nabla u_{t} + uu_{t}\, dx - \frac{1}{2}\int_{\pr B(x_{0}, t_{0} - t)}u_{t}^{2} + |\nabla u|^{2} + u^{2}\, d\sigma\\
+&= \int_{B(x_{0}, t_{0} - t)}u_{t}u_{tt} - \Delta u u_{t} + u u_{t}\, dx\\
+&\hspace{2in}+ \int_{\pr B(x_{0}, t_{0} - t)}\frac{\pr u}{\pr \nu}u_{t}\, d\sigma - \frac{1}{2}\int_{\pr B(x_{0}, t_{0} - t)}u_{t}^{2} + |\nabla u|^{2} + u^{2}\, d\sigma\\
+&\leq \int_{B(x_{0}, t_{0} - t)}u_{t}(u_{tt} - \Delta u + u)\, dx + \int_{\pr B(x_{0}, t_{0} - t)}\frac{\pr u}{\pr \nu}u_{t} - \frac{1}{2}u_{t}^{2} - \frac{1}{2}|\nabla u|^{2}\, d\sigma.
+\end{align*}
+Since $u_{tt} - \Delta u + u = 0$ and
+\begin{align*}
+\frac{\pr u}{\pr \nu}u_{t} \leq \abb{\frac{\pr u}{\pr \nu}u_{t}} \leq \frac{1}{2}u_{t}^{2} + \frac{1}{2}|\nabla u|^{2},
+\end{align*}
+it follows that $\dot{E}(t) \leq 0$ for $0 \leq t \leq t_{0}$. Therefore $E(t) \leq E(0) = 0$ for all $0 \leq t \leq t_{0}$. Thus
+$u \equiv 0$ in the cone $C$.
+
+Since $g$ and $h$ are both compactly supported, let $M$ be such that $g(x) = 0$ and $h(x) = 0$
+for $|x| > M$. Fix a time $T > 0$. We show that $u(\cdot, T)$ is compactly supported.
+For $|x_{0}| > M + 2T$, then $u \equiv u_{t} \equiv 0$ in $B(x_{0}, T)$. By the computation
+in the previous paragraph, it follows that $u \equiv 0$ in $\{(x, t) : 0 \leq t \leq T, |x - x_{0}| \leq T - t\}$. In particular, $(x_{0}, T)$ is in this set and hence $u(x_{0}, T) = 0$.
+Therefore since $x_{0}$ was an arbitrary point with length $> M + 2T$, it follows
+that $u(x, T) = 0$ for all $|x| > M + 2T$. Therefore $u$ is compactly supported.
+\hfill\qed
+
+\subsection*{Solution to Spring 2010, \#5}\label{s105}
+Let $v : \R \times [0,\infty)$ be smooth with compact support. Then, by integration by parts,
+\begin{align}
+\nonumber 0 &= \int_0^{\infty} \int_{-\infty}^{\infty} [(g(u))_t + (h(u))_x] v \, dx dt \\
+\nonumber &= -\int_0^{\infty} \int_{-\infty}^{\infty} g(u)v_t + h(u)v_x \, dx dt + \int_{-\infty}^{\infty} g(u)v \Bigr\rvert_{0}^{\infty} \, dx \\
+\label{s10intsol} &= \int_0^{\infty} \int_{-\infty}^{\infty} g(u)v_t + h(u)v_x \, dx dt + \int_{-\infty}^{\infty} g(u(x,0))v(0) \, dx
+\end{align}
+Because $v$ has compact support many of the boundary terms vanish. \eqref{s10intsol} is the integral solution.
+
+\vspace{0.4cm}
+
+Suppose $C$ is a smooth curve in $\R \times (0,\infty)$ such that $u$ is not continuous on $C$, but is smooth on either side. Let $V \subset \R \times (0,\infty)$ be open such that $V \cap C \neq \emptyset$. Let $V_l$ denote the part of $V$ to the left of $C$ and $V_r$ denote the part of $V$ to the right of $C$. Let $v$ be a smooth test function with compact support in $V$. Then, using \eqref{s10intsol},
+\begin{align}
+	\nonumber 0 &= \int_0^{\infty} \int_{-\infty}^{\infty} g(u)v_t + h(u)v_x \, dx dt + \int_{-\infty}^{\infty} g(u(x,0))v(0) \, dx \\
+	\label{s10twoint} &= \iint_{V_l} g(u)v_t + h(u)v_x \, dx dt + \iint_{V_r} g(u)v_t + h(u)v_x \, dx dt
+\end{align}
+Note because $v$ has compact support in $V$, $v(0)=0$, so the second term in \eqref{s10intsol} vanishes. Now, using integration by parts, we compute
+\begin{align*}
+ \iint_{V_l} g(u) v_t + h(u) v_x \, dx dt &= -\iint_{V_l} [(g(u))_t + (h(u))_x] v \, dx dt + \int_C [g(u_-) \nu^2 + h(u_-) \nu_1] v \, dl \\
+ &= \int_C [g(u_-) \nu^2 + h(u_-) \nu_1] v \, dl
+\end{align*}
+Recall that $v$ has compact support in $V$, so the integral along $\d V_l \backslash C$ that arises from integration by parts vanishes. The notation $u_-$ denotes taking a limit from left to right toward $C$. Finally $\nu = (\nu^1,\nu^2)$ is the unit normal to $C$ pointing from $V_l$ to $V_r$. By similar work,
+$$ \iint_{V_r} g(u) v_t + h(u) v_x \, dx dt = - \int_C [g(u_+) \nu^2 + h(u_+) \nu_1] v \, dl $$
+We get an extra negative sign here because $\nu$ is pointing in the opposite direction of what the normal vector should be. Thus, \eqref{s10twoint} becomes
+\begin{align*}
+0 &= \int_C [g(u_-) \nu^2 + h(u_-) \nu_1] v \, dl - \int_C [g(u_+) \nu^2 + h(u_+) \nu_1] v \, dl \\
+&= \int_C [(g(u_-) - g(u_+))\nu^2 + (h(u_-)-h(u_+)) \nu_1]v \, dl
+\end{align*}
+Since this holds for all smooth test functions $v$ with compact support in $V$, we have
+\begin{equation}
+\label{s10RH}
+	(g(u_-) - g(u_+))\nu^2 + (h(u_-)-h(u_+)) \nu_1 = 0
+\end{equation}
+along $C$. Suppose $C$ is parametrically represented as $\{(x,t) \, | \, x = s(t) \}$ for some smooth $s(\cdot) : [0,\infty) \to \R$. Then, because the tangential vector to $C$ at any $t$ is $(\dot s,1)$, the normal vector could be defined as $(1,-\dot s)$. Thus,
+$$ \nu = (\nu^1,\nu^2) = \frac{1}{\sqrt{1+\dot s^2}} ( 1, -\dot s) $$
+Therefore, \eqref{s10RH} becomes
+$$ (g(u_-) - g(u_+))(-\dot s) + (h(u_-)-h(u_+)) = 0 \quad \implies \quad \dot s = \frac{h(u_-)-h(u_+)}{g(u_-) - g(u_+)} $$
+which is the Rankine-Hugoniot condition along $C$. \hfill\qed
+
+\subsection*{Solution to Spring 2010, \#6}\label{s106}
+We use method of characteristics. We have
+\begin{align*}
+\begin{array}{ll}
+ \dot{x} = 2p & x(0) = x_{0}\\
+ \dot{y} = y & y(1) = 1\\
+ \dot{p} = p & p(0) = \frac{1}{2}x_{0}\\
+ \dot{q} = 0 & q(0) = 1\\
+ \dot{z} = p^{2} + z & z(0) = \frac{1}{4}x_{0}^{2} + 1.
+\end{array}
+\end{align*}
+Therefore we have $q(s) = 1$, $p(s) = \frac{1}{2}x_{0}e^{s}$, $x(s) = x_{0}e^{s}$, $y(s) = e^{s}$.
+We have
+$$\dot{z} = p^{2} + z = \frac{1}{4}x_{0}^{2}e^{2s} + z$$
+and hence as $z(0) = \frac{1}{4}x_{0}^{2} + 1$,
+$$z(s) = \frac{1}{4}x_{0}^{2} e^{2s} + e^{s} = \frac{1}{4}x_{0}^{2}\bigg(\frac{x(s)}{x_{0}}\bigg)^{2} + y(s) = \frac{1}{4}x(s)^{2} + y(s).$$
+Therefore $u(x, y) = \frac{1}{4}x^{2} + y.$
+\hfill\qed
+
+\subsection*{Solution to Spring 2010, \#7}\label{s107}
+We will write
+$$E[u] := \frac{1}{2}\int_{0}^{x_{\Gamma}}\beta u'^{2}\, dx + \int_{x_{\Gamma}}^{1}\beta u'^{2}\, dx + \ov{u}b$$
+where the derivative inside the integral are with respect ot $x$. For $f \in H^{1}$, with $f(0) = f(1) = [f] = 0$\footnote{We are choosing
+$f$ so that $u + \vep f$ has the ``same properties" as $u$, so $(u + \vep f)(0) = (u + \vep f)(1) = 0$ and $[u + \vep f] = a$.}, we have
+\begin{align*}
+E'[u]f &= \lim_{\vep \rightarrow 0}\frac{1}{\vep}(E[u + \vep f] - E[u])\\
+&= \int_{0}^{x_{\Gamma}}\beta u'f'\, dx + \int_{x_{\Gamma}}^{1}\beta u'f'\, dx + \ov{f}b = \int_{0}^{x_{\Gamma}}\beta u'f'\, dx + \int_{x_{\Gamma}}^{1}\beta u'f'\, dx + f(x_{\Gamma})b
+\end{align*}
+where the last equality is because $\ov{f} = f(x_{\Gamma})$ since $[f] = 0$.
+Since $\frac{\pr}{\pr x}(\beta(x)u'(x)) = 0$ for $x \in (0, x_{\Gamma}) \cup (x_{\Gamma}, 1)$, $\beta u'$ is constant
+in $(0, x_{\Gamma})$ and constant in $(x_{\Gamma}, 1)$. Let
+\begin{align*}
+\beta u' =
+\begin{cases}
+b_{0} & \text{ in } (0, x_{\Gamma})\\
+b_{1} & \text{ in } (x_{\Gamma}, 1).
+\end{cases}
+\end{align*}
+Then $b_{1} - b_{0} = b$ and hence
+\begin{align*}
+\int_{0}^{x_{\Gamma}}b_{0}f'\, dx &+ \int_{x_{\Gamma}}^{!}b_{1}f'\, dx + f(x_{\Gamma})(b_{1} - b_{0})\\
+&= b_{0}(f(x_{\Gamma}) - f(0)) + b_{1}(f(1) - f(x_{\Gamma})) + f(x_{\Gamma})(b_{1} - b_{0}) = b_{1}f(1) - b_{0}f(0) = 0.
+\end{align*}
+Therefore $E'[u]f = 0$ for all such $f \in H^{1}$ with $f(0) = f(1) = [f] = 0$ and hence $E'[u] = 0$.
+
+We also have
+\begin{align*}
+E''[u]f^{2} = \lim_{\vep \rightarrow 0}\frac{1}{\vep}(E'[u + \vep f]f - E'[u]f) = \int_{0}^{x_{\Gamma}}\beta f'^{2} + \int_{x_{\Gamma}}^{1}\beta f'^{2}\, dx > 0.
+\end{align*}
+Therefore $E''[u] > 0$. Thus $u$ is a minimum for $E[\, \cdot \,]$. That is, for all $v$ with $v \in H^{!}$
+$v(0) = v(1) = 0$, $[v] = a$, we have $E[u] \leq E[v]$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2010, \#8}\label{s108}
+This is your basic ``Duhamel's principle" question. By the superposition principle, we can obtain the solution by solving
+\begin{equation}
+	\label{s101_8}
+	\begin{array}{c}
+	w_t + aw_x = f(x,t), \quad x \in \R, \,\, t > 0 \\
+	w(x,0) = 0
+	\end{array}
+\end{equation}
+and
+\begin{equation}
+	\label{s102_8}
+	\begin{array}{c}
+	v_t + av_x = 0, \quad x \in \R, \,\, t>0 \\
+	v(x,0) = \phi(x)
+	\end{array}
+\end{equation}
+and adding the results. The solution of \eqref{s102_8} is just $v(x,t) = \phi(x-at)$. To solve \eqref{s101_8}, we use Duhamel's principle, and instead, we solve
+\begin{equation}
+	\label{s103_8}
+	\begin{array}{c}
+	\tilde w_t(x,t;s) + a \tilde w_x(x,t;s) = 0, \quad x \in \R, \,\, t > s \\
+	\tilde w(x,s;s) = f(x,s), \quad s>0
+	\end{array}
+\end{equation}
+Then, we obtain $w$ by $w(x,t) = \int_0^t \tilde w(x,t;s) \, ds$. Thus, we have
+$$ w(x,t) = \int_0^t f(x-a(t-s),s) \, ds $$
+Therefore,
+$$ u(x,t) = \phi(x-at) + \int_0^t f(x-a(t-s),s) \, ds $$ \hfill\qed

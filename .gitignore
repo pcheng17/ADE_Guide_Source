@@ -1,0 +1,13 @@
+# Ignoring all by-products of compiling ADE_Guide.tex
+# Feel free to add to this list if needed             
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# I think this is a Mac OSX only file...
+.DS_Store

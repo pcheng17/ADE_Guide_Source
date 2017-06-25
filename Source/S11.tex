@@ -1,0 +1,363 @@
+\noindent The solution to Spring 2011, \#2 is omitted.
+
+\subsection*{Solution to Spring 2011, \#1}\label{s111}
+We rewrite the system as
+\begin{align*}
+x' &= y\\
+y' &= -kx - ax^{3}.
+\end{align*}
+Since $\frac{\pr}{\pr x}(y) + \frac{\pr}{\pr y}(-kx - ax^{3}) = 0$, the system is a Hamilitonian
+system and hence all equilibrium points are centers or saddles. The Jacobian is
+$$J(x, y) = \pmat{0}{1}{-k - 3ax^{2}}{0}.$$
+The equilibrium points are
+\begin{itemize}
+\item $(0, 0)$ if $a \geq 0$
+\item $(0, 0)$ and $(\pm \sqrt{-\frac{k}{a}}, 0)$ if $a < 0$.
+\end{itemize}
+At the equilbrium point $(0, 0)$, $J(0, 0) = \smat{0}{1}{-k}{0}$ which has eigenvalues
+$\pm ki$. Therefore since the system is Hamiltonian, $(0, 0)$ is a center (alternatively,
+one could prove $(0, 0)$ is a center by solving $\frac{dy}{dx} = \frac{-kx - ax^{3}}{y}$ which
+gives a conserved quantity/Lyapunov function. See the solution to Spring 2015, \#8 for more
+details). Therefore in the case of a hard spring, we only have a center at $(0, 0)$.
+In the case of a soft spring, we have a center at $(0, 0)$ in addition to saddles at
+$(\pm \sqrt{-\frac{k}{a}}, 0)$. Indeed,
+$$J(\pm \sqrt{-\frac{k}{a}}, 0) = \pmat{0}{1}{2k}{0}.$$
+The eigenvalues of this matrix are $\pm\sqrt{2k}$ and hence $(\pm\sqrt{-\frac{k}{a}}, 0)$
+are saddles.
+
+If we add a damping term, then for some $b \neq 0$, our system becomes
+\begin{align*}
+x' &= y\\
+y' &= -kx - ax^{3} + by.
+\end{align*}
+The Jacobian is $$J(x, y) = \pmat{0}{1}{-k - 3ax^{2}}{b}.$$ The equilibrium points are once again
+\begin{itemize}
+\item $(0, 0)$ if $a > 0$
+\item $(0, 0)$ and $(\pm \sqrt{-\frac{k}{a}}, 0)$ if $a < 0$.
+\end{itemize}
+At $(0, 0)$, $J(0, 0) = \smat{0}{1}{-k}{b}$ which has eigenvalues
+$(b \pm \sqrt{b^{2} - 4k})/2$. Thus
+\begin{itemize}
+\item if $b^{2} - 4k > 0$, then $(0, 0)$ is a saddle
+\item if $b^{2} - 4k = 0$, then $(0, 0)$ is an improper node (stable if $b < 0$ and unstable if $b > 0$)
+\item if $b^{2} - 4k < 0$, then $(0, 0)$ is a clockwise spiral (since for $\vep > 0$ small, $\smat{0}{1}{-k}{b}\svt{\vep}{0} = \svt{0}{-k}$ and so the spiral points in the clockwise
+direction).
+\end{itemize}
+At $(\pm \sqrt{-\frac{k}{a}}, 0)$,
+$J(\pm \sqrt{-\frac{k}{a}}, 0) = \smat{0}{1}{2k}{b}$ which has eigenvalues
+$(b \pm \sqrt{b^{2} + 8k})/2$. Therefore $(\pm\sqrt{-\frac{k}{a}}, 0)$
+are still saddles.
+\hfill\qed
+
+\subsection*{Solution to Spring 2011, \#3}\label{s113}
+We present two similar solutions. One in the spirit of the proof of the maximum principle, another using a ``first time" argument.
+
+\vspace{0.25in}
+
+\noindent \textbf{``Maximum Principle" Approach:} Define $w(x,t) := e^{-\lambda t} u(x,t)$, where $\lambda > \max_{x \in \overline{D}} a(x)$. Note that $\lambda$ is well-defined because $a(x)$ is a continuous on a closed and bounded domain set $\overline{D}$.  Because of the initial and boundary conditions on $u$, observe that $w$ vanishes on $\Gamma$ and $w(x,0) \geq 0$ for all $t>0$. Now, suppose $w$ achieves a negative minimum at $(x_0,t_0)$. Note that this must be in the interior of $D \times (0,\infty)$ since $w \geq 0$ on the parabolic boundary. Then,
+$$ (w_t - \Delta w)(x_0,t_0) \leq 0$$
+However, at the same time,
+\begin{align*}
+	w_t - \Delta w &= e^{-\lambda t} (u_t - \Delta u - \lambda u) \\
+	&= (a(x) - \lambda) w
+\end{align*}
+so we have
+$$ (w_t - \Delta w)(x_0,t_0) = (a(x_0) - \lambda) w(x_0,t_0) > 0 $$
+Because of our choice of $\lambda$ above, $a(x) - \lambda < 0$ for all $x \in \overline{D}$. We have reached a contradiction, which implies $w$ will never achieve a negative minimum. Therefore, $w(x,t) \geq 0$ for all $(x,t) \in D \times (0,\infty)$. Finally, because $e^{-\lambda t} > 0$ for all $t$, we also have that $u(x,t) \geq 0$ for all $(x,t) \in D \times (0,\infty)$. \qed
+
+\vspace{0.25in}
+
+\noindent \textbf{``First Time" Approach:} Let $M := \max_{\ov{D}}a(x)$ and $v(x, t) := e^{-(2M + 1)t}u(x, t)$. Then $v_{t} = -(2M + 1)e^{-(2M + 1)t}u + e^{-(2M + 1)t}u_{t}$
+Since $u_{t} - \Delta u = a(x)u$, multiplying both sides by $e^{-(2M + 1)t}$ and using our relation between $u_{t}$ and $v_{t}$ yields
+that $$v_{t} - \Delta v = (a(x) - 2M - 1)v.$$
+\begin{claim}\label{s113cl1}
+For every $\vep > 0$, $v(x, t) > -\vep$ for all time.
+\end{claim}
+\begin{proof}
+Fix arbitrary $\vep > 0$. Suppose the claim was false. Then there exists a minimal time $t_{0}$ and a corresponding $x_{0}$ such that $v(x_{0}, t_{0}) = -\vep$. Since
+$v(x, 0) = u(x, 0) \geq 0$ and $v(x, t') > -\vep$ for $t' < t_{0}$ and $v(x, t_{0}) \geq -\vep$, we have $v_{t}(x_{0}, t_{0}) \leq 0$ and $(\Delta v)(x_{0}, t_{0}) \geq 0$.
+Therefore at $(x_{0}, t_{0})$, $v_{t} - \Delta v \leq 0$. But
+$$v_{t}(x_{0}, t_{0}) - (\Delta v)(x_{0}, t_{0}) = (a(x_{0}) - 2M - 1)v(x_{0}, t_{0}) = -\vep(a(x_{0}) - 2M - 1) > 0$$
+where in the last inequality we have used how $M$ was defined. This is a contradiction. Therefore no such minimal time exists
+and hence $v(x, t) > -\vep$ for all time. This completes the proof of Claim \ref{s113cl1}.
+\end{proof}
+Thus by the claim, letting $\vep \rightarrow 0$, $v(x, t) \geq 0$ for all time and hence $u \geq 0$ for all time. \hfill\qed
+
+\subsection*{Solution to Spring 2011, \#4}\label{s114}
+The equation we want to solve is
+\begin{align*}
+u_{x}^{2} + u_{x}u_{y} &= 1\\
+u(x, 0) &= f(x).
+\end{align*}
+We use method of characteristics. We have $F(p, q, z, x, y) = p^{2} + pq - 1$. Method of characteristics yields the following system
+\begin{align*}
+\begin{array}{ll}
+ \dot{x} = 2p + q& x(0) = x_{0} \\
+ \dot{y} = p& y(0) = 0\\
+ \dot{z} = 2p^{2} + 2pq & z(0) = f(x_{0})\\
+ \dot{p} = 0 & p(0) = f'(x_{0})\\
+ \dot{q} = 0 & q(0) = \frac{1}{f'(x_{0})} - f'(x_{0}).
+\end{array}
+\end{align*}
+The problem is characteristic when $f'(x_{0}) = 0$. We now assume that $f'(x_{0}) \neq 0$. We have
+\begin{align*}
+p(s) &= f'(x_{0})\\
+q(s) &= \frac{1}{f'(x_{0})} - f'(x_{0})\\
+y(s) &= f'(x_{0})s.
+\end{align*}
+Since we have solved for $p(s)$ and $q(s)$, we have
+\begin{align*}
+\dot{z} = 2p^{2} + 2pq = 2(p^{2} + pq) = 2.
+\end{align*}
+Thus
+$$z(s) = f(x_{0}) + 2s = f(x_{0}) + \frac{y(s)}{f'(x_{0})}.$$
+Therefore
+\begin{align*}
+x(s) &= x_{0} + (2f'(x_{0}) + \frac{1}{f'(x_{0})} - f'(x_{0}))s = x_{0} + (f'(x_{0}) + \frac{1}{f'(x_{0})})s \\
+&= x_{0} + (f'(x_{0}) + \frac{1}{f'(x_{0})})\frac{y(s)}{f'(x_{0})} = x_{0} + (1 + \frac{1}{f'(x_{0})^{2}})y(s).
+\end{align*}
+and hence
+$$f'(x_{0})^{2}(x - x_{0}) = f'(x_{0})^{2}y + y.$$
+Rearranging this yields that
+$$y = f'(x_{0})^{2}(x - x_{0} - y).$$
+Let $r(x, y)$ be defined near $(x_{0}, 0)$ by $y = f'(r)^{2}(x - r - y)$, then the solution is
+$$u(x,y) = f(r) + \frac{y}{f'(r)}.$$
+We now show that there is a unique local solution with $r(x_{0}, 0) = x_{0}$. Let
+$$G(x, y, r) := f'(r)^{2}(x - r - y) - y.$$
+Then
+$$G_{r}(x, y, r) = 2f'(r)f''(r)(x - r - y) - f'(r)^{2}$$
+and hence
+$$G_{r}(x_{0}, 0, x_{0}) = 2f'(x_{0})f''(x_{0})(x_{0} - x_{0} - 0) - f'(x_{0})^{2} = -f'(x_{0})^{2} \neq 0.$$
+Thus by the implicit function theorem, there is a unique local solution with $r(x_{0}, 0) = x_{0}$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2011, \#5}\label{s115}
+\subsubsection*{Solution to $5a$}
+Let $\R^{3}_{+} = \{(x_1, x_2, x_3): x_3 > 0\}$ and $\pr\R_{3}^{+} = \{(x_1, x_2, x_3): x_3 = 0\}$. We have
+$u(x_{0}) = \int_{\R^{3}_{+}}\delta(y - x_{0})u(y)\, dy$. If we could fine a function $G(y, x_{0})$ such that $\Delta_{y}G(y, x_{0}) = \delta(y - x_{0})$
+and $\frac{\pr G}{\pr y_{3}} ( = \frac{\pr G}{\pr \nu}) = 0$ on $y_{3} = 0$, then we have
+\begin{align*}
+\int_{\R^{3}_{+}}\delta(y - x_{0})u(y)\, dy &= \int_{\R^{3}_{+}}\Delta_{y}G(y, x_{0})u(y)\, dy\\
+&= -\int_{\R^{3}_{+}}\nabla_{y}G(y, x_0)\cdot \nabla u\, dy + \int_{\pr \R^{3}_{+}}u\frac{\pr G}{\pr \nu}(y, x_{0})\, d\sigma_{y}\\
+&= \int_{\R^{3}_{+}}G(y, x)\Delta u\, dy + \int_{\pr \R^{3}_{+}}u\frac{\pr G}{\pr \nu}(y, x_{0}) - G\frac{\pr u}{\pr \nu}\, d\sigma\\
+&= -\int_{\pr \R^{3}_{+}}G(y, x_{0})\frac{\pr u}{\pr \nu}\, d\sigma = -\int_{\R^{2}}\wt{G}(y, x_{0})f(y)\, dy
+\end{align*}
+where $\wt{G}(y, x_{0}) = \wt{G}(y_{1}, y_{2}, x_{0}) = G(y_{1}, y_{2}, 0, x_{0})$ (and $y_{1}, y_{2} \in \R$ and $x_{0} \in \R^{3}$).
+Thus if we can solve $\Delta_{y}G(y, x_{0}) = \delta(y - x_{0})$ in $\R^{3}_{+}$ with $\frac{\pr G}{\pr y_{3}} = 0$ on $y_{3} = 0$,
+then let $P(x_{0}, y) := \wt{G}(y, x_{0})$.
+
+If $x_{0} = (x_{1}, x_{2}, x_{3})$, let $\wt{x}_{0} := (x_{1}, x_{2}, -x_{3})$. Let
+$$G(y, x_{0}) := -\frac{1}{3(3 - 2)\alpha(3)}\bigg(\frac{1}{|y - x_{0}|} + \frac{1}{|y - \ov{x_{0}}|}\bigg).$$
+Then in $\R^{3}_{+}$, since $\ov{x_{0}} \not\in \R^{3}_{+}$, $\Delta_{y}G(y, x_{0}) = \delta(y - x_{0})$.
+Furthermore, as $\frac{\pr}{\pr y_{3}}\frac{1}{|y|} = -\frac{y_{3}}{|y|^{3}}$, when $y_{3} = 0$,
+\begin{align*}
+\frac{\pr G}{\pr y_{3}}\bigg|_{y_{3} = 0} = \frac{1}{4\pi}\bigg(-\frac{y_{3} - x_{3}}{|y - x_{0}|^{3}} - \frac{y_{3} + x_{3}}{|y - \ov{x_{0}}|^{3}}\bigg)\bigg|_{y_{3} = 0} = 0.
+\end{align*}
+Therefore for $x \in \R^{3}_{+}$,
+\begin{align*}
+u(x) &= \int_{\R^{2}}\frac{1}{4\pi}\bigg(\frac{1}{|(y_{1}, y_{2}, 0) - x|} + \frac{1}{|(y_{1}, y_{2}, 0) - \ov{x}|}\bigg)f(y)\, dy\\
+&= \frac{1}{2\pi}\int_{\R^{2}}\frac{f(y)}{\sqrt{(y_{1} - x_{1})^{2} + (y_{2} - x_{2})^{2} + x_{3}^{2}}}\, dy.
+\end{align*}
+Let $K$ be chosen so that $\supp f \subset B_{K/2}(0)$. Then
+\begin{align*}
+2\pi u(x) = \int_{\R^{2}}\frac{f(y)}{\sqrt{(y_{1} - x_{1})^{2} + (y_{2} - x_{2})^{2} + x_{3}^{2}}}\, dy &= \int_{B_{K}(0)}\frac{f(y)}{\sqrt{(y_{1} - x_{1})^{2} + (y_{2} - x_{2})^{2} + x_{3}^{2}}}\, dy\\
+&= \int_{B_{K}(0)}\frac{1}{|(x_{1}, x_{2}, x_{3})| - |(y_{1}, y_{2}, 0)|}f(y)\, dy\\
+&\leq \frac{1}{|x| - K}\int_{B_{K}(0)}f(y)\, dy.
+\end{align*}
+Letting $|x| \rightarrow \infty$ shows that $u \rightarrow 0$ as $|x| \rightarrow \infty$.
+\hfill\qed
+
+\subsubsection*{Solution to $5b$}
+Let $u, v$ be two solutions to the boundary value problem in $(a)$ with $u, v \rightarrow 0$ as $|x| \rightarrow \infty$. Then
+$w := u - v$ satisfies
+\begin{align*}
+\begin{cases}
+\Delta w = 0 & \text{ in } \R^{3}_{+}\\
+\frac{\pr w}{\pr \nu} = 0 & \text{ in } \pr \R^{3}_{+}\\
+w \rightarrow 0 & \text{ as } |x| \rightarrow \infty.
+\end{cases}
+\end{align*}
+Fix arbitrary $\vep > 0$. Since $w \rightarrow 0$ as $|x| \rightarrow \infty$, there exists an $R > 0$ such that
+$|w(x)| \leq \vep$ for $|x| \geq R/2$, $x \in \R^{3}_{+}$. Now consider $w$ in $B_{R}(0)$. For $|x| = R$, $|w(x)| \leq \vep$. We claim that $|w(x)| \leq \vep$
+for all $x \in \R^{3}_{+}$ with $|x| \leq R$. By the Maximum Principle, $\max_{B_{R}(0) \cap \R^{3}_{+}}w$ occurs either on $\{|x| = R\}$ (the circular part of the hemisphere)
+or on $\pr \R_{+}^{3}$ (the base of the hemisphere). But if it occurs on $\pr\R_{+}^{3}$, we would contradict Hopf's lemma since
+$\frac{\pr w}{\pr \nu} = 0$ on $\pr \R^{3}_{+}$. Therefore $|w(x)| \leq \vep$ for all $x \in \R^{3}_{+}$ with $|x| \leq R$. Thus $|w(x)| \leq \vep$
+for all $x \in \R^{3}_{+}$ and since $\vep > 0$ was arbitrary, $w \equiv 0 $ in $\R^{3}_{+}$. Therefore the boundary value problem has at most one solution
+which converges to $0$ as $|x| \rightarrow \infty$.
+\begin{rem}
+An alternate ``energy" approach: Since $\pr w/\pr \nu = 0$ on $\pr \R^{3}_{+}$ and $w \rightarrow 0$ as $|x| \rightarrow \infty$,
+$0 = \int_{\R^{3}_{+}}w\Delta w\, dx = -\int_{\R^{3}_{+}}|\nabla w|^{2}$ which implies that $w$ is a constant in $\R^{3}_{+}$. Since $w \rightarrow 0$, it follows that $w \equiv 0$.
+\hfill\qed
+\end{rem}
+
+\subsubsection*{Solution to $5c$}
+The condition that $\int_{\R^{2}}f(y)\, dy = 0$ suggests either were should be using the Fourier transform (since $\int f(y)\, dy = 0$ implies $\wh{f}(0) = 0$) or we be subtracting off a singularity. We do the latter.
+We have
+\begin{align*}
+2\pi u(x) &= \int_{\R^{2}}\bigg(\frac{1}{\sqrt{(y_{1} - x_{1})^{2} + (y_{2} - x_{2})^{2} + x_{3}^{2}}} - \frac{1}{\sqrt{x_{1}^{2} + x_{2}^{2} + x_{3}^{2}}}\bigg)f(y)\, dy\\
+&= \int_{\R^{2}}\bigg(\frac{1}{|(y_{1}, y_{2}, 0) - x|} - \frac{1}{|x|}\bigg)f(y)\, dy= \int_{\R^{2}}\frac{|x| - |(y_{1}, y_{2}, 0) - x|}{|x||(y_{1}, y_{2}, 0) - x|}f(y)\, dy.
+\end{align*}
+Therefore
+\begin{align*}
+|u(x)| \leq \frac{1}{2\pi}\int_{\R^{2}}\frac{|(y_{1}, y_{2}, 0)|}{|x||(y_{1}, y_{2}, 0) - x|}|f(y)|\, dy \leq \frac{1}{2\pi}\int_{\R^{2}}\frac{|(y_{1}, y_{2}, 0)|}{|x|(|x| - |(y_{1}, y_{2}, 0)|)}|f(y)|\, dy.
+\end{align*}
+Let $R$ be chosen such that $\supp(f) \subset B_{R/2}(0)$. Then
+\begin{align*}
+\frac{1}{2\pi}\int_{\R^{2}}\frac{|(y_{1}, y_{2}, 0)|}{|x|(|x| - |(y_{1}, y_{2}, 0)|)}|f(y)|\, dy &= \frac{1}{2\pi}\int_{B_{R}(0)}\frac{|(y_{1}, y_{2}, 0)|}{|x|(|x| - |(y_{1}, y_{2}, 0)|)}|f(y)|\, dy\\
+&\leq \frac{1}{2\pi}\int_{B_{R}(0)}\frac{|(y_{1}, y_{2}, 0)|}{|x|(|x| - R)}|f(y)|\, dy.
+\end{align*}
+Now for $|x| \geq 10R$, $|x| - R \geq |x|/2$ and hence
+\begin{align*}
+|u(x)| \leq \frac{1}{\pi |x|^{2}}\int_{B_{R}(0)}|(y_{1}, y_{2}, 0)||f(y)|\, dy \leq \frac{1}{\pi|x|^{2}}\int_{\R^{2}}|f(y)|\sqrt{y_{1}^{2} + y_{2}^{2}}\, dy.
+\end{align*}
+Since $f$ is of compact support, the integral is finite and hence $|u(x)| \leq C/|x|^{2}$ for some absolute constant $C$ whenever $|x| \geq 10R$.
+
+To prove the desired inequality for $|x| < 10R$, we prove continuity of $u$. Indeed if we knew this then $|x|^{2}|u(x)|$ is bounded on $\ov{B_{10R}(0)}$ and hence
+there exists a $C > 0$ such that $|x|^{2}|u(x)| \leq C$ for $x \in \ov{B_{10R}(0)}$. Thus $|u(x)| \leq \wt{C}/|x|^{2}$ for all $x \in \R^{3}$ for some $\wt{C}$.
+Therefore we want to show that $$\int_{\R^{2}}\frac{1}{\sqrt{(y_{1} - x_{1})^{2} + (y_{2} - x_{2})^{2} + x_{3}^{2}}}f(y)\, dy$$ is continuous in the region
+$\{x: |x| \leq 10R\}$.
+
+The idea of the proof is to mimic the proof of showing the function $f \ast \frac{1}{|x|}$ is continuous in $\R^{d}$ for smooth $f$ (more generally, show $f \ast g$ is continuous
+for $g$ locally integrable and $f$ sufficiently nice, however our proof is a bit more tricky since we are not quite dealing with $1/|x|$). First we change the integral
+over $\R^{2}$ to an integral over $\R^{3}$. We have
+\begin{align*}
+\int_{\R^{2}}\frac{1}{\sqrt{(y_{1} - x_{1})^{2} + (y_{2} - x_{2})^{2} + x_{3}^{2}}}f(y)\, dy = \int_{\R^{3}}\frac{f(y)1_{y_{3} = 0}}{|x - y|}\, dy.
+\end{align*}
+For $|x_{0}| \leq 10R$, we have
+\begin{align*}
+\bigg|\int_{\R^{3}}\frac{1}{|x_{0} - y|}f(y)&1_{y_{3} = 0}\, dy - \int_{\R^{3}}\frac{1}{|x - y|}f(y)1_{y_{3} = 0}\, dy\bigg|\\
+&\leq \int_{\R^{3}}\bigg|\frac{1}{|x_{0} - y|} - \frac{1}{|x - y|}\bigg||f(y)|\, dy\\
+&= \int_{B_{R}(0)}\bigg|\frac{1}{|x_{0} - y|} - \frac{1}{|x - y|}\bigg||f(y)|\, dy\\
+&= \int_{B_{R}(x_{0})}\bigg|\frac{1}{|y - (x_{0} - x)|} - \frac{1}{|y|}\bigg||f(x_{0} - y)|\, dy
+\end{align*}
+where the last equality is the change of variables $y \mapsto x_{0} - y$. If $|x_{0}| \leq 10R$, the above integral is
+\begin{align*}
+\leq \int_{B_{20R}(0)}\bigg|\frac{1}{|y - (x_{0} - x)|} &- \frac{1}{|y|}\bigg||f(x_{0} - y)|\, dy\\
+&\leq \bigg(\int_{B_{20R}(0)}\bigg|\frac{1}{|y - (x_{0} - x)|} - \frac{1}{|y|}\bigg|^{2}\, dy\bigg)^{1/2}\nms{f}_{L^{2}(\R^{3})}\\
+&= \nms{\tau_{x_{0} - x}F - F}_{L^{2}(B_{20R}(0))}\nms{f}_{L^{2}(\R^{3})}
+\end{align*}
+where $F(x) := 1/|x|$ and $(\tau_{h}f)(x) := f(x- h)$.
+
+Let $G(x) := \frac{1}{|x|}1_{B_{100R}(0)}(x)$. Note that $G \in L^{2}(\R^{3})$ and hence as translation is continuous in $L^{p}$,
+$\nms{\tau_{y} G - G}_{L^{2}(\R^{3})} \rightarrow 0$ as $y \rightarrow 0$. For $x \in B_{20R}(0)$, $\tau_{y}F = \tau_{y}G$ for $|y| < 0.01R$.
+Indeed, this is equivalent to showing that $1_{B_{100R}(0)}(x - y) = 1$ for $|y| < 0.01R$ which is true since $|x - y| \leq 20.01R$. Therefore for $|y| < 0.01R$,
+\begin{align}\label{s115eq1}
+\int_{B_{20R}(0)}|\tau_{y}F - F|^{2}\, dx = \int_{B_{20R}(0)}|\tau_{y}G - G|^{2}\, dx \leq \nms{\tau_{y}G - G}_{L^{2}(\R^{3})}^{2} \rightarrow 0
+\end{align}
+as $y \rightarrow 0$.
+
+By the discussion above, we have shown
+$$2\pi|u(x) - u(x_{0})| \leq \nms{\tau_{x_{0} - x}F - F}_{L^{2}(B_{20R}(0))}\nms{f}_{L^{2}(\R^{3})}.$$
+Since $\nms{\tau_{x_{0} - x}F - F}_{L^{2}(B_{20R}(0))} \rightarrow 0$ as $x \rightarrow x_{0}$ by \eqref{s115eq1}, and $f \in C_{c}$, it follows
+that $u$ is continuous at $x_{0}$. Therefore since $x_{0}$ was arbitrary, $u$ is continuous on $\{x: |x| \leq 10R\}$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2011, \#6}\label{s116}
+The problem seems to be true for any $a > 0$. Since the initial data is given for time $t = 0$, we assume that $t > 0$ throughout.
+We mimic the energy proof of the domain of dependence.  Let
+$$e(t) := \frac{1}{2}\int_{B(0, R - t) \cap \{x_{3} > 0\}}u_{t}^{2} + |\nabla u|^{2}\, dx = \frac{1}{2}\int_{B(0, R - t)}1_{x_{3} > 0}(u_{t}^{2} + |\nabla u|^{2})\, dx.$$
+Then
+\begin{align*}
+\dot{e}(t) &= \int_{B(0, R - t)}1_{x_{3} > 0}(u_{t}u_{tt} + \nabla u \cdot \nabla u_{t})\, dx - \frac{1}{2}\int_{\pr B(0, R - t)}1_{x_{3} > 0}(u_{t}^{2} + |\nabla u|^{2})\, dS\\
+& = \int_{B(0, R - t) \cap \{x_{3} > 0\}}u_{tt}u_{t} - \Delta u u_{t}\, dx\\
+ &\quad\quad+ \int_{\pr(B(0, R - t) \cap \{x_{3} > 0\})}u_{t}\frac{\pr u}{\pr \nu}\, dS - \frac{1}{2}\int_{\pr B(0, R - t) \cap \{x_{3} > 0\}}u_{t}^{2} + |\nabla u|^{2}\, dS\\
+&= \int_{\pr B(0, R - t) \cap \{x_{3} = 0\}}u_{t}\frac{\pr u}{\pr \nu}\, dS + \int_{\pr B(0, R - t) \cap \{x_{3} > 0\}}u_{t}\frac{\pr u}{\pr \nu} - \frac{1}{2}u_{t}^{2} - \frac{1}{2}|\nabla u|^{2}\, dx.
+\end{align*}
+As
+\begin{align*}
+\bigg|u_{t}\frac{\pr u}{\pr \nu}\bigg| \leq |u_{t}||\nabla u| \leq \frac{1}{2}u_{t}^{2} + \frac{1}{2}|\nabla u|^{2},
+\end{align*}
+it follows that
+\begin{align*}
+\dot{e}(t) \leq \int_{\pr B(0, R - t) \cap \{x_{3} = 0\}}u_{t}\frac{\pr u}{\pr \nu}\, dS.
+\end{align*}
+Since on $\pr B(0, R - t) \cap \{x_{3} = 0\}$, $\pr u/\pr \nu = -\pr u/\pr x_{3}$ and as $u_{x_{3}} = au_{t}$ on $x_{3} = 0$, we have
+$$\dot{e}(t) \leq -a\int_{\pr B(0, R - t) \cap \{x_{3} = 0\}}u_{t}^{2}\, dS \leq 0.$$
+We also have
+$$e(0) = \frac{1}{2}\int_{B(0, R)}1_{x_{3} > 0}(u_{t}(x, 0)^{2} + |(\nabla u)(x, 0)|^{2})\, dx = \frac{1}{2}\int_{B(0, R)}1_{x_{3} > 0}(g(x)^{2} + |\nabla f(x)|^{2}\, dx = 0$$
+since $f$ and $g$ vanish in $B(0, R)$.
+Thus $e(t) = 0$ which implies that $u$ vanishes in the hemisphere $B(0, R - t) \cap \{x_{3} > 0\}$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2011, \#7}\label{s117}
+By Duhamel's principle, given $u_{n-1}$ we can find $u_n$ by
+\begin{equation}
+\label{s11iter}
+	u_n(x,t) = \int_{\R} K(x-y)f(y) \, dy + \int_0^t  \int_{\R} K(x-y,t-s) u_{n-1}^2(y,s) \, dy ds
+\end{equation}
+
+Hence, we'll consider the functional
+$$ F(\varphi)(x,t) := \int_{\R} K(x-y)f(y) \, dy + \int_0^t \int_{\R} K(x-y,t-s) \varphi^2(y,s) \, dy ds $$
+acting on functions $\varphi \in \text{BC}(\R^2 \to \R)$, the set of all bounded continuous functions from $\R^2$ to $\R$, which is a complete metric space under the sup norm $|| \cdot ||_{\infty}$. Note that $||f||_{\infty} < \infty$ since $f$ is assumed to be a bounded continuous function. Let $0 < t < T$, where $T||f||_{\infty} < 1/100$. Then, by using the fact that $\int_{\R} K(x,t) \, dx = 1$, we get
+\begin{equation}
+\label{s11bound}
+	||F(\varphi) ||_{\infty} \leq ||f||_{\infty} + T ||\varphi||_{\infty}^2 \leq ||f||_{\infty} + \frac{1}{100||f||_{\infty}} ||\varphi||_{\infty}^2
+\end{equation}
+
+Let $V := \{ \varphi \in \text{BC}(\R^2 \to \R)\} \, : \, ||\varphi||_{\infty} \leq 2 ||f||_{\infty} \}$. Since $V$ is a closed subset of $\text{BC}(\R^2 \to \R)$, $V$ is complete. We will now show that $F : V \to V$ and that $F$ is a contraction on $V$. In other words, we will show $F(\varphi) \in V$ for all $\varphi \in V$, and for any $\varphi, \phi \in V$, $||F(\varphi) - F(\phi)||_{\infty} \leq \alpha ||\varphi-\phi||_{\infty}$ for some $\alpha \in [0,1)$.
+
+\vspace{0.2cm}
+
+First, we show $F(\varphi) \in V$ for all $\varphi \in V$. By \eqref{s11bound},
+$$||F(\varphi)||_{\infty} \leq ||f||_{\infty} + \frac{1}{100||f||_{\infty}} 4||f||_{\infty}^2 \leq 2 ||f||_{\infty} $$
+Thus, $F(\varphi) \in V$ for all $\varphi \in V$. Next, let $\varphi, \phi \in V$. Then,
+\begin{align*}
+||F(\varphi) - F(\phi)||_{\infty} &= \left| \left| \int_0^t \int_{\R} K(x-y,t-s)(\varphi^2(y,s) - \phi^2(y,s)) \, dy ds \right| \right| \\
+&\leq T ||\varphi + \phi||_{\infty} ||\varphi - \phi||_{\infty} \\
+&\leq 4T ||f||_{\infty} ||\varphi - \phi||_{\infty} \\
+&\leq \frac{1}{25} ||\varphi - \phi||_{\infty}
+\end{align*}
+Thus, $F$ is a contraction on $V$.
+
+\vspace{0.2cm}
+
+Define $u_1 := f \in V$, and define $u_n$ inductively as follows:
+$$ (u_n)_t - \Delta u_n = u_{n-1}^2, \quad u_n(0,x) = f(x) $$
+By \eqref{s11iter}, $u_n \in V$ for all $n \in \N$. Finally, because we just showed $F$ is a contraction on $V$, we now know that this sequence will converge uniformly to a unique solution to the PDE.
+\hfill\qed
+
+
+\subsection*{Solution to Spring 2011, \#8}\label{s118}
+Let $v(x, t) = a(t)\psi(x/\ell(t))$ and $\eta = x/\ell(t)$. In what follows, by $\psi'(\eta)$, we mean $d\psi/d\eta$.
+Then
+\begin{align*}
+v_{t} &= a'(t)\psi(\eta) + a(t)\psi'(\eta)x(-\ell(t))^{-2}\ell'(t) = a'(t)\psi(\eta) - a(t)\psi'(\eta)\eta\frac{\ell'(t)}{\ell(t)}\\
+v_{x} &= a(t)\psi'(\eta)\ell(t)^{-1}\\
+v_{xx} &= a(t)\psi''(\eta)\ell(t)^{-2}\\
+(v^{2})_{x} &= 2vv_{x} = 2a(t)^{2}\psi(\eta)\psi'(\eta)\ell(t)^{-1}.
+\end{align*}
+Thus $v_{t} = v_{xx} + (v^{2})_{x}$ implies
+$$a'(t)\psi(\eta) - a(t)\psi'(\eta)\eta\frac{\ell'(t)}{\ell(t)} = \frac{a(t)}{\ell(t)^{2}}\psi''(\eta) + 2\frac{a(t)^{2}}{\ell(t)}\psi(\eta)\psi'(\eta).$$
+Let $a(t) = t^{\alpha}$, $\ell(t) = t^{\beta}$. Then
+\begin{align*}
+a(t)\frac{\ell'(t)}{\ell(t)} &= \beta t^{\alpha - 1}\\
+\frac{a(t)}{\ell(t)^{2}} &= t^{\alpha - 2\beta}\\
+\frac{a(t)^{2}}{\ell(t)} &= t^{2\alpha - \beta}.
+\end{align*}
+So we have
+$$\alpha t^{\alpha - 1}\psi(\eta) - \beta t^{\alpha - 1}\psi'(\eta)\eta = t^{\alpha - 2\beta}\psi''(\eta) + 2t^{2\alpha - \beta}\psi(\eta)\psi'(\eta).$$
+Dividing both sides by $t^{\alpha - 1}$ yields
+$$\alpha\psi(\eta) - \beta \psi'(\eta)\eta = t^{-2\beta + 1}\psi''(\eta) + 2t^{\alpha - \beta + 1}\psi(\eta)\psi'(\eta).$$
+Then we set $-2\beta + 1 = 0$ and $\alpha - \beta + 1 = 0$. This yields $\alpha = -1/2$ and $\beta = 1/2$.
+This reduces the above ODE to
+$$-\frac{1}{2}\psi(\eta) - \frac{1}{2}\psi'(\eta)\eta = \psi''(\eta) + 2\psi(\eta)\psi'(\eta).$$
+and hence
+$$-\frac{1}{2}(\eta\psi)' = \psi'' + (\psi^{2})'$$
+which implies
+$$-\frac{1}{2}\eta\psi = \psi' + \psi^{2} + C.$$
+Since we just want a similarity solution, choose $C = 0$.
+Then we want to solve for $\psi(\eta)$ in
+$$\psi' + \frac{1}{2}\eta\psi + \psi^{2} = 0.$$
+Let $\phi := 1/\psi$. Then $\psi' = -\phi'/\phi^{2}$ and hence
+$$-\frac{1}{\phi^{2}}\phi' + \frac{1}{2}\eta \frac{1}{\phi} + \frac{1}{\phi^{2}} = 0.$$
+Multiplying both sides by $-\phi^{2}$ yields
+$$\phi' - \frac{1}{2}\eta\phi - 1 = 0.$$
+Solving the above ODE with the integrating factor $e^{-\eta^{2}/4}$ yields that
+$$e^{-\eta^{2}/4}\phi = \int_{0}^{\eta/2}e^{-s^{2}}\, ds + \wt{C}.$$
+Since we just want a solution, choose $\wt{C} = 0$. Then
+$$\phi = e^{\eta^{2}/4}\int_{0}^{\eta/2}e^{-s^{2}}\, ds$$
+which implies
+$$\psi = e^{-\eta^{2}/4}\bigg(\int_{0}^{\eta/2}e^{-s^{2}}\, ds\bigg)^{-1}.$$
+Thus
+$$v(x, t) = t^{-1/2}\psi(x/t^{1/2}) = t^{-1/2}e^{-x^{2}/(4t)}\bigg(\int_{0}^{x/(2\sqrt{t})}e^{-s^{2}}\, ds\bigg)^{-1}.$$
+\hfill\qed

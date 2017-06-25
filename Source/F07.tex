@@ -1,0 +1,235 @@
+\subsection*{Solution to Fall 2007, \#1}\label{f071}
+We have
+\begin{align*}
+u(x, t) &= \frac{1}{\sqrt{4\pi t}}\int_{-\infty}^{\infty}\phi(y)e^{-\frac{(x - y)^{2}}{4t}}\, dy = \frac{1}{\sqrt{4\pi t}}\int_{-\infty}^{\infty}\phi(y)e^{-(\frac{x - y}{\sqrt{4t}})^{2}}\, dy\\
+& = -\frac{1}{\sqrt{4\pi t}}\int_{\infty}^{-\infty}\phi(x - u\sqrt{4t})e^{-u^{2}}\sqrt{4t}\, du = \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty}\phi(x - u\sqrt{4t})e^{-u^{2}}\, du
+\end{align*}
+where the third equality is by the change of variables $u = (x - y)/\sqrt{4t}$. Since $\phi$ is bounded and $\phi \rightarrow \phi_{0}$ as $|x| \rightarrow \infty$,
+by the Dominated Convergence theorem, for each fixed $x$,
+\begin{align*}
+\lim_{t \rightarrow \infty}u(x, t) &= \lim_{t \rightarrow \infty}\frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty}\phi(x - u\sqrt{4t})e^{-u^{2}}\, du\\
+& = \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty}(\lim_{t \rightarrow \infty}\phi(x - u\sqrt{4t}))e^{-u^{2}}\, du = \phi_{0}\cdot \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty}e^{-u^{2}}\, du = \phi_{0}.
+\end{align*}
+\hfill\qed
+
+\subsection*{Solution to Fall 2007, \#2}\label{f072}
+We want to show that if $u, v$ smooth with
+\begin{align*}
+\Delta u + \abn{\nabla u}^{2} = \Delta v + \abn{\nabla v}^{2} & \text{ in } \Om\\
+u = v & \text{ on } \pr \Om
+\end{align*}
+then $u = v$ in $\Om$. Let $w = u - v$. Then
+\begin{align*}
+\lap w + \abn{\del u}^{2} - \abn{\del v}^{2} = 0 & \text{ in } \Om\\
+w = 0 & \text{ on } \pr \Om.
+\end{align*}
+Note
+$$\abn{\del u}^{2} - \abn{\del v}^{2} = (\del u - \del v) \cdot (\del u + \del v) = \del w \cdot (\del u + \del v).$$
+Let $y = w + \vep e^{\ld x_{1}}$. Then
+$$\del y = \del w + (\vep\ld e^{\ld x_{1}}, 0, \ldots, 0)$$
+and $\lap y = \lap w + \vep\ld^{2}e^{\ld x_{1}}$.
+Thus
+$$\del y \cdot (\del u + \del v) = \del w \cdot (\del u + \del v) + \vep \ld e^{\ld x_{1}}(u_{x_{1}} + v_{x_{1}})$$
+and
+$$\lap y + \del y \cdot (\del u + \del v) = \vep\ld^{2}e^{\ld x_{1}} + \vep \ld e^{\ld x_{1}}(u_{x_{1}} + v_{x_{1}}) = \vep e^{\ld x_{1}}(\ld^{2} + \ld(u_{x_{1}} + v_{x_{1}}))$$
+since $u$, $v$ are smooth and $\Om$ is bounded, $u_{x_{1}} + v_{x_{1}}$ is bounded on $\Om$. Thus choose
+$\ld$ sufficiently large such that $\ld^{2} + \ld(u_{x_1} + v_{x_1}) > 0$ on $\Om$.
+Then $\lap y + \del y \cdot (\del u + \del v) > 0$ on $\Om$.
+With this choice of $\ld$, we claim
+$\max{\ov{\Om}}y = \max_{\pr\Om}y$. Suppose $x_{0}$ was such that $x_0 \in \Om$ and $y(x_{0}) = \max_{\ov{\Om}}y$.
+Then at $x_{0}$,
+$$\lap y + \del y \cdot (\del u + \del v) \leq 0,$$
+a contradiction. Therefore $$\max_{\ov{\Om}}y = \max_{\pr\Om}y.$$
+We then have
+$$0 = \max_{\pr\Om}w \leq \max_{\ov{\Om}}w \leq \max_{\ov{\Om}}y = \max_{\pr\Om}y = \max_{\pr\Om}\vep e^{2\ld x_{1}} \leq C\vep$$
+for some $C$ depending only on $\ov{\Om}$. Since $\vep$ was arbitrary, letting $\vep \rightarrow 0$ shows that
+$w \leq 0$ on $\ov{\Om}$ which implies that $u \leq v$ on $\ov{\Om}$.
+Interchanging the roles of $u, v$ above then shows $v \leq u$ on $\ov{\Om}$.
+Thus $u = v$ on $\ov{\Om}$.
+\hfill\qed
+
+\subsection*{Solution to Fall 2007, \#3}\label{f073}
+We have $\lap u + \ld u = 0$ in $\{0 < x < a, -\infty < y < \infty\}$ with $u(0, y) = 0$ and $u(a, y) = 0$.
+Let $u(x, y) = F(x)G(y)$, these boundary conditions imply that $F(0) = 0$ and $F(a) = 0$.
+
+We will only consider the case when $\ld = 0$. A similar argument will show the result when $\ld < 0$ or $\ld > 0$
+(see the solution to Winter 2004, \#1 for the solution to the PDE in these cases). Since $u(x, y) = F(x)G(y)$ and $\ld = 0$,
+$$F''(x)G(y) + F(x)G''(y) = 0$$
+and hence
+$$\frac{F''(x)}{F(x)} = -\frac{G''(y)}{G(y)} = -\mu$$
+for some constant $\mu$. Since we want nontrivial solutions, the only such solutions occur when $\mu > 0$ (by our boundary conditions on $F$).
+Then
+$F''(x) + \mu F(x) = 0$ and hence
+$F(x) = A\cos\sqrt{\mu}x + B\sin\sqrt{\mu}x$. Imposing the condition that $F(0) = 0$ yields that $A = 0$ and hence
+$F(x) = B\sin\sqrt{\mu}x$. Since $F(a) = 0$, $B\sin\sqrt{\mu}a = 0$ and hence $\sqrt{\mu}a = n\pi$ for $n = 1, 2, \ldots$
+which implies $\mu_{n} = (n\pi/a)^{2}$ and hence $F_{n}(x) = \sin(\frac{n\pi}{a}x)$.
+Since $G''(y)/G(y) = \mu$, $G = Ce^{-n\pi y/a} + De^{n\pi y/a}$. Thus
+$$u(x, y) = \sum_{n \geq 1}(C_{n}e^{-n\pi y/a} + D_{n}e^{n\pi y/a})\sin\frac{n\pi x}{a}.$$
+If $\int_{-\infty}^{\infty}\int_{0}^{a}|u(x, y)|^{2}\, dx\, dy < \infty$, as
+\begin{align*}
+\int_{0}^{a}\sin\frac{n\pi x}{a}\sin\frac{m\pi x}{a}\, dx =\frac{a}{2}1_{m = n},
+\end{align*}
+we have
+\begin{align*}
+\int_{0}^{a}u(x, y)^{2}\,dx &= \int_{0}^{a}\sum_{n \geq 1}(C_{n}e^{-n\pi y/a} + D_{n}e^{n\pi y/a})^{2}(\sin \frac{n\pi x}{a})^{2}\, dx\\
+& = \sum_{n \geq 1}(C_{n}e^{-n\pi y/a} + D_{n}e^{n\pi y/a})^{2}\frac{a}{2} = \frac{a}{2}\sum_{n \geq 1}C_{n}^{2}e^{-2n\pi y/a} + 2C_{n}D_{n} + D_{n}^{2}e^{2n\pi y/a}.
+\end{align*}
+Since $\int_{-\infty}^{\infty}e^{\pm 2n\pi y/a}\, dy = \infty$, the only way for $\nms{u}_{L^{2}(S)} < \infty$ is to have $C_{n} = D_{n} = 0$
+for all $n$. Thus $u = 0$ in the case when $\ld = 0$.
+\hfill\qed
+
+\subsection*{Solution to Fall 2007, \#4}\label{s074}
+Let $u, v$ be two smooth solutions. Let $w := u - v$. Then
+\begin{align*}
+w_{tt} + 2w_{xt} - w_{xx} + aw_{x} &= 0\\
+w(x, 0) = 0, w_{t}(x, 0) &= 0.
+\end{align*}
+Let
+$$e(t) := \frac{1}{2}\int_{\R}w_{t}^{2} + w_{x}^{2}\, dx.$$
+Then
+\ba
+\dot{e}(t) = \int_{\R}w_{t}w_{tt} + w_{x}w_{xt}\, dx &= \int_{\R}w_{t}w_{tt} - w_{xx}w_{t}\, dx\\
+& = \int_{\R}w_{t}(-2w_{xt} - aw_{x})\, dx = \int_{\R}-2w_{t}w_{xt} - aw_{x}w_{t}\, dx.
+\ea
+As $\int_{\R}w_{t}w_{xt}\, dx = -\int_{\R}w_{xt}w_{t}\, dx$, we have $\int_{\R}w_{t}w_{xt}\, dx = 0$
+and hence
+\[
+\dot{e}(t) = \int_{\R}a(x, t)w_{x}w_{t}\, dx \leq \int_{\R}\abn{a(x, t)}\abn{w_{x}}\abn{w_{t}}\, dx \leq \sup |a| \int_{\R}\frac{1}{2}w_{x}^{2} + \frac{1}{2}w_{t}^{2}\, dx \leq (\sup |a|)e(t).
+\]
+By Gronwall's inequality, $e(t) \leq e(0)\exp((\sup|a|)t)$. Since $e(0) = 0$,
+$e(t) = 0$ for all $t$. Therefore $w \equiv 0$. This proves uniqueness.
+\hfill\qed
+
+\sub{Solution to Fall 2007, \#5}\label{s075}
+\ssb{Solution to $(a)$ and $(b)$}
+Separating variables and solving yields that
+$$u(t) = (-\alpha ct + u_{0}^{-\alpha})^{-1/\alpha} = \bigg(\frac{1}{\frac{1}{u_{0}\alpha} - \alpha ct}\bigg)^{1/\alpha}.$$
+and hence the blowup time is when $1/u_{0}^{\alpha} = \alpha ct$, that is $t = 1/(\alpha cu_{0}^{\alpha})$.
+\hq
+
+\ssb{Solution to $(c)$}
+Fix $c$, $u_{0}$, we want to minimize $1/(c\alpha u_{0}^{\alpha})$. Since $c > 0$, this is the same
+as minimizing $1/\alpha u_{0}^{\alpha}$. This is the same as minimizing $\log(1/(\alpha u_{0}^{\alpha}))$.
+Let $F(\alpha) := \log(1/(\alpha u_{0}^{\alpha})) = -\log \alpha - \alpha \log u_{0}$.
+Then $F'(\alpha) = -1/\alpha - \log u_{0}$ and $F''(\alpha) = 1/\alpha^{2} \geq 0$.
+Thus the critical point of $F$ is $\alpha = -1/\log u_0$ which is a minimum.
+Note $0 < u_0 < 1$ and so $-1/\log u_0 > 0$. Thus the $\alpha$ that minimizes $t_{\ast}$ is $\alpha = -1/\log u_0$.
+\hq
+
+\sub{Solution to Fall 2007, \#6}\label{s076}
+The trick to solving these multidimensional method of characteristics problems is to first solve the analogous 1D problem
+and then try to mimic the steps for the multidimensional case.
+We first solve the 1D equation
+\ba
+u_{t} + uu_{x} &= u\\
+u(x, 0) &= x.
+\ea
+We have $F(p, q, z, x, t) = q + zp - z$
+and hence
+\ba
+\dot{x} &= z  & x(0) &= x_{0}\\
+\dot{t} &= 1  & t(0) &= 0\\
+\dot{z} &= z  & z(0) &= x_{0}
+\ea
+which implies $t(s) = s$, $z(s) = x_0 e^{s}$ and $x(s) = x_{0}e^{s}$. Therefore $u(x, t) = x$.
+
+Having solved the 1D equation, let us now solve the multidimensional equation.
+We want to solve
+\ba
+\mb{u}_{t} + \mb{u} \cdot \del \mb{u} &= \mb{u}\\
+\mb{u}(\mb{x}, 0) &= \mb{x}.
+\ea
+We have
+\ba
+\dot{\mb{x}} &= \mb{z} & \mb{x}(0) &= \mb{x_{0}}\\
+\dot{t}      &= 1      & t(0)      &= 0\\
+\dot{\mb{z}} &= \mb{z} & \mb{z}(0) &= \mb{x_{0}}
+\ea
+which implies $t(s) = s$, $\mb{z}(s) = \smat{e^{s}}{}{}{e^s}\mb{x_{0}}$, and $\mb{x}(s) = \smat{e^{s}}{}{}{e^s}\mb{x_{0}}$.
+Therefore $\mb{u}(\mb{x}, t) = \mb{x}$.
+\hq
+
+\sub{Solution to Fall 2007, \#7}\label{s077}
+\ssb{Solution to $(a)$}
+We have
+\ba
+-\ld\int_{0}^{L}u^{2}\, dx &= \int_{0}^{L}(u'' - au)u\, dx = \int_{0}^{L}u''u\, dx - \int_{0}^{L}au^{2}\, dx\\
+& = -\int_{0}^{L}u'^{2}\, dx - \int_{0}^{L}au^{2}\, dx \leq -\min_{x \in [0, L]}a\int_{0}^{L}u^{2}\, dx < 0
+\ea
+where the last inequality we have used that $a > 0$ and that $\int_{0}^{L}u^{2}\, dx \neq 0$ since otherwise this would imply that $u = 0$.
+Therefore $\ld > 0$.
+\hq
+
+\ssb{Solution to $(b)$}
+Let $a(x) = -1$, $L = 2\pi$. Then $(\sin x)'' + (\sin x) = 0\cdot \sin x$. Thus $a < 0$ does not imply $\ld < 0$.
+\hq
+
+\ssb{Solution to $(c)$}
+The argument in this part is similar to that of the one given in Fall 2003, \#2.
+The operator $Tu = u'' - a(x)u$ is Sturm-Liouville (see the review at the end of the solutions).
+The smallest eigenvalue is given by
+$$\ld_{L} = \min_{\st{u \in H^{1}_{0}([0, L])\\u \not\equiv 0}}-\frac{\ips{u, Tu}}{\ips{u, u}}$$
+and hence
+$$-\ld_{L} = \max_{\st{u \in H_{0}^{1}([0, L])\\u \not\equiv 0}}\frac{\ips{u, Tu}}{\ips{u, u}}.$$
+We will now show that $f(L) = \max_{\st{u \in H_{0}^{1}([0, L])\\\\u \not\equiv 0}}\frac{\ips{u, Tu}}{\ips{u, u}}$
+is (strictly!) increasing in $L$. Since $H_{0}^{1}([0, L_{1}]) \subset H_{0}^{1}([0, L_{2}])$
+for $L_1 < L_2$, we have that
+\ba
+\max_{\st{u \in H_{0}^{1}([0, L_1])\\u \not\equiv 0}}\frac{\ips{u, Tu}}{\ips{u, u}} \leq \max_{\st{u \in H_{0}^{1}([0, L_{2}])\\u \not\equiv 0}}\frac{\ips{u, Tu}}{\ips{u, u}}.
+\ea
+We now show that this inequality is in fact strict which shows strict increasing of $f(L)$.
+We have
+\ba
+\frac{\ips{u, Tu}}{\ips{u, u}} = \frac{\int_{0}^{L}u(u'' - au)\, dx}{\int_{0}^{L}u^{2}\, dx} = \frac{-\int_{0}^{L}u'^{2}\, dx}{\int_{0}^{L}u^{2}\, dx} - a
+\ea
+and hence
+\ba
+\max_{\st{u \in H_{0}^{1}([0, L])\\u \not\equiv 0}}\frac{\ips{u, Tu}}{\ips{u, u}} = \bigg(\max_{\st{u \in H_{0}^{1}([0, L])\\u \not\equiv 0}}\frac{-\int_{0}^{L}u'^{2}\, dx}{\int_{0}^{L}u^{2}\, dx}\bigg) - a.
+\ea
+Thus to show $f(L)$ is increasing in $L$, it suffices to show that
+$$g(L) := \max_{\st{u \in H_{0}^{1}([0, L])\\u \not\equiv 0}}\frac{-\int_{0}^{L}u'^{2}\, dx}{\int_{0}^{L}u^{2}\, dx}$$
+is increasing in $L$. We have
+$g(L_{1}) \leq g(L_{2})$ for $L_{1} < L_{2}$ and now we show we cannot have equality. Suppose $g(L_{1}) = g(L_{2})$.
+Let $$F_{L}[u] := \frac{-\int_{0}^{L}u'^{2}\, dx}{\int_{0}^{L}u^{2}\, dx}.$$ The maximum $\wt{u}$ of $F_{L}[u]$ satisfies
+\ba
+0 &= \lim_{\vep \rightarrow 0}\frac{1}{\vep}(F_{L}[\wt{u} + \vep v] - F_{L}[\wt{u}]) = \lim_{\vep \rightarrow 0}\frac{1}{\vep}\bigg(\frac{-\int_{0}^{L}(\wt{u}' + \vep v')^{2}\, dx}{\int_{0}^{L}(\wt{u} + \vep v)^{2}\, dx} - \frac{-\int_{0}^{L}\wt{u}'^{2}\, dx}{\int_{0}^{L}\wt{u}^{2}\, dx}\bigg)\\
+&=\lim_{\vep \rightarrow 0}\frac{1}{\vep}\bigg(\frac{(-\int_{0}^{L}\wt{u}'^{2} + 2\vep \wt{u}'v' + \vep^{2}v'^{2}\, dx)\int_{0}^{L}\wt{u}^{2}\, dx + \int_{0}^{L}\wt{u}'^{2}\, dx \int_{0}^{L}\wt{u}^{2} + 2\vep \wt{u}v + \vep^{2}v^{2}\, dx}{\int_{0}^{L}(\wt{u} + \vep v)^{2}\, dx\int_{0}^{L}\wt{u}^{2}\, dx}\bigg)
+\ea
+for all $v \in H_{0}^{1}([0, L])$. Therefore
+$$0 = (-\int_{0}^{L}\wt{u}'v'\, dx)(\int_{0}^{L}\wt{u}^{2}\, dx) + (\int_{0}^{L}\wt{u}'^{2}\, dx)(\int_{0}^{L}\wt{u}v\, dx)$$
+and hence
+$$0 = (\int_{0}^{L}\wt{u}^{2}\, dx)(\int_{0}^{L}\wt{u}''v\, dx) + (\int_{0}^{L}\wt{u}'^{2}\, dx)(\int_{0}^{L}\wt{u}v\, dx).$$
+Let $m :=\int_{0}^{L}\wt{u}'^{2}\, dx/\int_{0}^{L}\wt{u}^{2}\, dx$. Then $\int_{0}^{L}(\wt{u}'' + m\wt{u})v\, dx = 0$ for all $v \in H_{0}^{1}([0, L])$.
+Thus $\wt{u}$ is a Dirichlet eigenfunction of the Laplacian in $[0, L]$ and hence is real analytic in $[0, L]$.
+
+Let $\wt{u}_{1}$ be the maximizer associated to $g(L_{1})$. Then extend $\wt{u}_{1}$ to be a function (which we will still call $\wt{u}_{1}$)
+in $H_{0}^{1}([0, L_{2}])$ by setting $\wt{u}_{1} = 0$
+on $(L_{1}, L_{2}]$. Then as we assumed that $g(L_{1}) = g(L_{2})$,
+\ba
+\frac{-\int_{0}^{L_{2}}\wt{u}_{1}'^{2}\, dx}{\int_{0}^{L_{2}}\wt{u}_{1}^{2}\, d} = \max_{\st{u \in H_{0}^{1}([0, L_{2}])\\u \not\equiv 0}}\frac{-\int_{0}^{L_{2}}u'^{2}\, dx}{\int_{0}^{L_{2}}u^{2}\, dx}.
+\ea
+Therefore $\wt{u}_{1}$ is a Dirichlet eigenfunction of $\Delta$ in $[0, L_{2}]$ and hence
+is real analytic. But $\wt{u}_{1}= 0$ on $(L_{1}, L_{2}]$ and hence $\wt{u}_{1} = 0$ in all of $[0, L_{2}]$ (since
+if a real analytic function vanishes on an open set it vanishes everywhere it is real analytic), a contradiction.
+Therefore we cannot have $g(L_{1}) = g(L_{2})$ and so $g(L_{1}) < g(L_{2})$. Therefore $\ld_{L}$ is a strictly decreasing function of $L$.
+\hq
+
+\sub{Solution to Fall 2007, \#8}\label{s078}
+\ssb{Solution to $(a)$}
+By the Maximum Principle for the heat equation
+\ba
+\min_{\ov{\Om_{i}(t)} \times [0, T]}u_{i} = \min_{(\ov{\Om_{i}(t)} \times [0, T]) \bs (\Om_{i}(t) \times (0, T])}u_{i} = 0.
+\ea
+Now suppose $u_{i}(x_0, t_0) = 0$ for some $x_0 \in \Om_{i}(t_0)$, $0 < t_0 \leq T$.
+Then by the Maximum Principle, $u_i \equiv 0$ everywhere, but this contradicts that
+$u_{i}(x, 0) = f(x) > 0$. Thus $u_{i} > 0$ for all $x \in \Om_{i}(t)$ and $0 < t \leq T$.
+\hq
+
+\ssb{Solution to $(b)$}
+Let $w:= u_{2} - u_{1}$. Then
+$w_{t} - \lap w = 0$ for $x \in \Om_{1}(t)$, $0 \leq t \leq T$.
+Note that $w(x, 0) = 0$ for $x \in \Om_{1}(0)$ and for $x \in \pr\Om_{1}(t)$,
+$w(x, t) = u_{2}(x, t) - u_{1}(x, t) = u_{2}(x, t) > 0$
+where the inequality and second equality is because $\pr\Om_{1} \subset \Om_{2}$ and part $(a)$.
+Then by the same proof as in part $(a)$, we have $w > 0$ for all $x \in \Om_{1}(t)$ and $0 < t \leq T$.
+\hq

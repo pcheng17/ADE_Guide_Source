@@ -1,0 +1,52 @@
+\sub{Analysis ``tricks" for nonlinear equations}
+\noindent Here we record two ideas that Peter and I found useful while proving results about PDEs (especially nonlinear ones).
+\begin{enumerate}[$(1)$]
+\item \emph{In bounded domains, use the $L^{p}$ norm to control the $L^{\infty}$ norm.}
+
+Often in problems (such as Spring 2008, \#7; Spring 2010, \#2, or Spring 2014, \#2), one needs to control data about $\sup_{x \in \Om}\abn{u(x, t)}$.
+That is if $u$ is a smooth solution, we want to control the $L_{x}^{\infty}$ norm of $u(x, t)$ (in other words, the $L^{\infty}$ norm in the $x$
+variable, thus our bounds will depend on $t$).
+A typical way of handling this is to prove a maximum principle or Hopf's lemma for the problem. But sometimes it is not clear on how to
+prove such a lemma especially if the problem is a nonlinear PDE (in which case a first time argument might help).
+If $\Om$ is bounded, then we can use the following fact about $L^{p}$ norms:
+\begin{lemma}
+If $f(x)$ is a smooth function and $\Om \subset \R^{d}$ is bounded, then
+$\lim_{p \rightarrow \infty}\nms{f}_{L^{p}(\Om)} = \nms{f}_{L^{\infty}(\Om)}.$
+\end{lemma}
+\begin{proof}
+Since $f$ is smooth and $\Om$ is bounded, $\nms{f}_{L^{1}} < \infty$.
+By how the $L^{\infty}$ norm is defined, $\abs{f(x)} \leq \nm{f}_{L^{\infty}}$ for almost every $x \in \Om$. Observe that for $p > 1$,
+\begin{align*}
+\nm{f}_{L^{p}} = \left(\int_{\Om}\abs{f}^{p}\, d\mu\right)^{1/p} &= \left(\int_{\Om}\abs{f}^{p - 1}\abs{f}\, d\mu\right)^{1/p}\\
+& \leq \nm{f}_{L^{\infty}}^{1 - \frac{1}{p}}\left(\int_{\Om}\abs{f}\, d\mu\right)^{1/p} = \nm{f}_{L^{\infty}}^{1 - \frac{1}{p}}\nm{f}_{L^{1}}^{1/p}.
+\end{align*}
+Therefore $$\limsup_{p \rightarrow \infty}\nm{f}_{L^{p}} \leq \limsup_{p \rightarrow \infty}\nm{f}_{L^{\infty}}^{1 - \frac{1}{p}}\nm{f}_{L^{1}}^{1/p} = \nm{f}_{L^{\infty}}.$$
+By how the $L^{\infty}$ is defined, for every $\vep > 0$, there exists a $\delta > 0$ such that
+$\mu(\{x \in \Om: \abs{f(x)} \geq \nm{f}_{L^{\infty}} - \vep\}) \geq \delta$. Then
+$$\nm{f}_{L^{p}} = \left(\int_{\Om}\abs{f}^{p}\, d\mu\right)^{1/p} \geq \delta^{1/p}(\nm{f}_{L^{\infty}} - \vep).$$
+Therefore $$\liminf_{p \rightarrow \infty}\nm{f}_{L^{p}} \geq \nm{f}_{L^{\infty}} - \vep$$ and letting $\vep \rightarrow 0$
+yields that $\liminf_{p \rightarrow \infty}\nm{f}_{L^{p}} \geq \nm{f}_{L^{\infty}}$. Thus we have $\lim_{p \rightarrow \infty}\nm{f}_{L^{p}} = \nm{f}_{L^{\infty}}$.
+\end{proof}
+Thus if we know smoothing about $\nms{u}_{L^{p}_{x}(\Om)} \leq M$ for some $M$ (where $M$ can depend on $p$ and $t$), then
+by the above lemma,
+\ba
+\sup_{x \in \Om}\abn{u(x, t)} = \nms{u}_{L^{\infty}_{x}(\Om)} = \lim_{p\rightarrow \infty}\nms{u}_{L^{p}_{x}(\Om)} \leq M.
+\ea
+This approach can look slightly more complicated (for example, usually one works with $E(t) := \int_{\Om}|u|^{p}\, dx$ which is $\nms{u}_{L^{p}_{x}(\Om)}^{p}$
+and then take the time derivative), but it reduces the problem to just straightforward computation and does not require any clever observations or substitutions
+to find a maximum principle for the problem.
+
+\item \emph{When proving a strict inequality about the behavior of a (smooth) solution, consider the first time when the inequality fails.}
+
+This is what Peter and I called the ``first time argument" in our solutions. Often one wants to show a strict inequality regarding the solution (for example,
+our solution $u > 0$ for all space and time)\footnote{If ones wants to show that $u \geq 0$, then one way to turn this into a strict inequality is by showing for every $\vep > 0$,
+$u > -\vep$.} The first time argument is crucial in Spring 2008, \#7; Fall 2011, \#2 and \#4; Fall 2014, \#7. Combining this with a perturbation
+allows one to prove maximum principle type results for nonlinear PDEs.
+
+The idea of the first time argument is as follows. Let $u$ be a smooth solution to a given PDE. Suppose we know at time $t = 0$, $u(x, t) > 0$ for all $x$ in our domain.
+We want to prove that $u > 0$ always. Suppose this was not true. Since $u$ is a smooth solution, there exists a first time $t_{0}$ and a minimal $x_{0}$ (the minimality of $x_{0}$
+is not so crucial) such that $u(x_{0}, t_{0}) = 0$. Since $u$ was initially positive and $t = t_{0}$ was the \emph{first} time my solution hits 0,
+then $u(x, t') > 0$ for all $t' < t_{0}$ and $u(x, t_{0}) \geq 0$ for all $x$. Then $u_{t}(x_{0}, t_{0}) \leq 0$ and since $x = x_{0}$ is local minimum of $u(\cdot, t_{0})$,
+$\Delta_{x}u(x_{0}, t_{0}) \geq 0$. Now analyzing the PDE at the point $(x_{0}, t_{0})$ should give a contradiction (if not, perhaps apply a perturbation such as $\pm \vep t$ or $\pm \vep e^{\pm \ld x}$).
+\end{enumerate}
+\end{document}

@@ -1,0 +1,175 @@
+\noindent The solution to Fall 2009, \#3 is omitted.
+
+\sub{Solution to Fall 2009, \#1}\label{f091}
+Note that $u(x)$ is harmonic in the open ball of radius $R$ not the closed ball of radius $R$, so we cannot immediately
+apply Poisson's formula for a ball of radius $R$, rather we need to apply this formula to a ball of radius $R - \vep$.
+See Winter 2005, \#3 for a similar solution.
+
+We will assume $n \geq 3$.
+Fix $x \in B_{R}(0)$. Let $\vep$ be such that $\vep \in (0, R - \abn{x})$. Then $x \in B_{R - \vep}(0)$ and by the Poisson formula for the ball,
+\ba
+u(x) = \frac{(R - \vep)^2 - \abn{x}^2}{n\alpha(n)(R - \vep)}\int_{\pr B(0, R - \vep)}\frac{u(y)}{\abn{x - y}^n}\, d\sigma(y).
+\ea
+Note that for $y \in \pr B(0, R - \vep)$, $R - \vep - \abn{x} \leq \abn{x - y} \leq R - \vep + \abn{x}$.
+Thus
+\ba
+u(x) &\geq \frac{(R - \vep)^2 - \abn{x}^2}{n\alpha(n)(R - \vep)}\int_{\pr B(0, R - \vep)}\frac{u(y)}{(R - \vep - \abn{x})^n}\, d\sigma(y)\\
+& = \frac{(R - \vep)^2 - \abn{x}^2}{n\alpha(n)(R - \vep)(R - \vep- \abn{x})^n}\int_{\pr B(0, R - \vep)}u(y)\, d\sigma(y)\\
+& = \frac{(R - \vep)^2 - \abn{x}^2}{(R - \vep)(R - \vep - \abn{x})^n}(R - \vep)^{n - 1}u(0) \\
+&= \frac{(R - \vep)^2 - \abn{x}^2}{(R - \vep - \abn{x})^n}(R -\vep)^{n - 2}u(0)
+\ea
+where the second equality we have used that $u$ is harmonic in the open ball of radius $R$ (and hence is harmonic in the closed ball of radius $R - \vep$).
+Similarly,
+\ba
+u(x) = \frac{(R - \vep)^2 - \abn{x}^2}{n\alpha(n)(R - \vep)}\int_{\pr B(0, R - \vep)}\frac{u(y)}{\abn{x - y}^n}\, d\sigma(y) \leq \frac{(R - \vep)^2 - \abn{x}^2}{(R - \vep + \abn{x})^n}(R - \vep)^{n - 2}u(0).
+\ea
+Thus
+\ba
+\frac{(R - \vep)^2 - \abn{x}^2}{(R - \vep - \abn{x})^n}(R -\vep)^{n - 2}u(0) \leq u(x) \leq \frac{(R - \vep)^2 - \abn{x}^2}{(R - \vep + \abn{x})^n}(R - \vep)^{n - 2}u(0).
+\ea
+Letting $\vep \rightarrow 0$ and then using that $x$ is an arbitrary point in the open ball of radius $R$ proves Harnack's inequality.
+\hq
+
+\sub{Solution to Fall 2009, \#2}\label{f092}
+The weak formulation of this PDE is
+\ba
+\int_{\Om}\del u \cdot \del v + \vep Vuv\, dx = \int_{\Om}fv\,dx
+\ea
+for all $v\in H_{0}^{1}(\Om)$. Let $B: H_{0}^1 \times H_{0}^1 \rightarrow \R$, $\psi: H_{0}^1 \rightarrow \R$ be defined by
+$$B[u, v] := \int_{\Om}\del u \cdot \del v + \vep Vuv\, dx\quad \text{ and } \quad \psi(v) := \int_{\Om}fv\, dx.$$
+Note $\abn{\psi(v)} \leq \nms{f}_{L^{2}(\Om)}\nms{v}_{H^{1}(\Om)}$ and
+\ba
+\abn{B[u, v]} \leq \nms{\del u}_{L^2}\nms{\del v}_{L^2} + \vep \nms{V}_{L^{\infty}}\nms{u}_{L^2}\nms{v}_{L^2} \leq (1 + \vep\nms{V}_{L^{\infty}})\nms{u}_{H^1}\nms{v}_{H^1}.
+\ea
+It remains to show that $B$ is coercive if $\vep > 0$ is small enough. We have
+\begin{align}\label{f092eq1}
+B[u, u] = \int_{\Om}\abn{\del u}^2 + \vep Vu^2\, dx = \frac{1}{3}\nms{\del u}_{L^2}^{2} + \frac{2}{3}\nms{\del u}_{L^2}^2 + \vep\int_{\Om}Vu^2\, dx.
+\end{align}
+Let $m := \min_{\ov{\Om}}V$. By Poincare's inequality (since $u \in H_{0}^1$), there is some constant $C_{\Om} >0$ depending only on $\Om$
+such that $\int_{\Om}\abn{\del u}^{2}\, dx \geq C_{\Om}\int_{\Om}u^{2}\, dx.$
+Thus the right hand side of \eqref{f092eq1} is
+$$ \geq \frac{1}{3}\nms{\del u}_{L^2}^{2} + \int_{\Om}(\frac{2}{3}C_{\Om} + \vep m)u^{2}\, dx = \frac{1}{3}\nms{\del u}_{L^2}^2 + (\frac{2}{3}C_{\Om} + \vep m)\int_{\Om}u^2\, dx.$$
+If $m \geq 0$, then
+\ba
+B[u, u] \geq \frac{1}{3}\nms{\del u}_{L^2}^{2} + \frac{2}{3}C_{\Om}\int_{\Om}u^2\, dx \geq \frac{1}{2}\min(\frac{1}{3}, \frac{2}{3}C_{\Om})\nms{u}_{H^1}^2.
+\ea
+If $m < 0$, then for $\vep < C_{\Om}/(-3m)$ (here it is crucial that $m < 0$),
+\ba
+B[u, u] &\geq \frac{1}{3}\nms{\del u}_{L^2}^2 + (\frac{2}{3}C_{\Om} + \vep m)\nms{u}_{L^2}^2 \geq \frac{1}{3}\nms{\del u}_{L^2}^2 + (\frac{2}{3}C_{\Om} - \frac{C_{\Om}}{-3m}(-m))\nms{u}_{L^2}^2\\
+& = \frac{1}{3}\nms{\del u}_{L^2}^2 + (\frac{2}{3}C_{\Om} - \frac{C_{\Om}}{3})\nms{u}_{L^2}^2 \geq \min(\frac{1}{3},\frac{1}{3}C_{\Om})\nms{u}_{H^1}^{2}.
+\ea
+Therefore $B$ is coercive if $\vep > 0$ is sufficiently small and hence by Lax-Milgram,
+there exists a unique $\wt{u}$ such that $B[\wt{u}, v] = \psi(v)$ for all $v \in H_{0}^{1}(\Om)$.
+\hq
+
+\sub{Solution to Fall 2009, \#4}\label{f094}
+We will assume $u \rightarrow 0$ as $\abn{x} \rightarrow \infty$. We have
+\ba
+(-u_{xx} + Vu)_{t} &= -u_{xxt} + V_{t}u + Vu_{t}\\
+& = Lu_{t} + V_{t}u = Lu_{t} + (6VV_{x} - V_{xxx})u = Lu_{t} + (LA - AL)u.
+\ea
+Therefore $(Lu)_{t} = Lu_{t} + (LA - AL)u$ and hence $(\ld u)_{t} = Lu_{t} + (LA - AL)u$. Expanding the left hand side gives
+$$\ld_{t}u + \ld u_{t} = Lu_{t} + LAu - \ld Au$$
+and hence
+$$\ld_{t}u + \ld(u_{t} + Au) = L(u_{t} + Au).$$
+Since $$\int_{\R}(Lu)v\, dx = \int_{\R}u(Lv)\, dx$$
+(here we have used that $u, v \rightarrow 0$ as $\abn{x} \rightarrow \infty$),
+we have
+\ba
+\int_{\R}\ld_{t}u^2\, dx + \int_{\R}\ld(u_t + Au)u\, dx = \int_{\R}L(u_{t} + Au)u\, dx.
+\ea
+Since
+$$\int_{\R}L(u_{t} + Au)u\, dx = \int_{\R}(u_{t} + Au)\ld u\, dx,$$
+and $\int_{\R} u^2\, dx = 1$, we have $\ld_{t} = 0$. Thus $\ld$ must be independent of time.
+\hq
+
+\sub{Solution to Fall 2009, \#5}\label{f095}
+This is an application of the method of characteristics. We have
+$u_{t} + \frac{1}{2}u_{x}^2 - x = 0$ with $u(x, 0) = \alpha x$. Then
+$F(p, q, z, x, t) = q + \frac{1}{2}p^2 - x = 0$. Thus
+\ba
+\dot{x} &= p && x(0) = x_{0}\\
+\dot{t} &= 1 && t(0) = 0\\
+\dot{z} &= p^2 + q && z(0) = \alpha x_{0}\\
+\dot{p} &= 1 && p(0) = \alpha\\
+\dot{q} &= 0 && q(0) = x_{0} - \frac{1}{2}\alpha^2.
+\ea
+Solving this yields $p(s) = s + \alpha$, $q(s) = x_{0} - \frac{1}{2}\alpha^2$,
+$x(s) = \frac{1}{2}(s + \alpha)^2 - \frac{1}{2}\alpha^2 + x_0$, $t(s) = s$, and
+$$\dot{z}(s) = (s + \alpha)^2 + x_0 - \frac{1}{2}\alpha^2.$$
+Thus
+$$z(s) = \frac{1}{3}(s + \alpha)^3 + (x_{0} - \frac{1}{2}\alpha^2)s - \frac{1}{3}\alpha^3 + \alpha x_{0}.$$
+Therefore
+$$u(x, t) = \frac{1}{3}(t + \alpha)^3 + (x - \frac{1}{2}(t + \alpha)^2)t - \frac{1}{3}\alpha^3 + \alpha(x - \frac{1}{2}(t + \alpha)^2 + \frac{1}{2}\alpha^2).$$
+\hq
+
+\sub{Solution to Fall 2009, \#6}\label{f096}
+This argument is in the spirit of the ``first time argument", see for example the solution to Spring 2008, \#7. Let $y(t) := 1 - e^{-t^2/2}$. Then
+$y'(t) = t(1 - y(t))$. As
+\ba
+\frac{1}{1 + tx(t)} + t - 1 - t(1 - x(t)) \geq \frac{t^2 x(t)}{1 + tx(t)} \geq 0,
+\ea
+we have $x'(t) \geq t(1 - x(t))$. We want to show that $x(t) \geq y(t)$. Note that $y(0) = 0$ and $x(0) \geq 0 = y(0)$.
+Suppose there exists an $\alpha$ such that $x(\alpha) < y(\alpha)$. Then there exists a firs time $t_0$ such that $x(t_0) = y(t_0)$.
+Since $x$ and $y$ are continuous, there exists a $\delta$ such that $y(s) > x(s)$ for all $s \in (t_0, t_0 + \delta)$. Let
+$t_1 := t_0 + \delta /2$. Then
+\ba
+x(t_1) &= \int_{t_0}^{t_1}x'(s)\, ds + x(t_0) \geq \int_{t_0}^{t_{1}}s(1 - x(s))\, ds + y(t_{0})\\
+ &> \int_{t_{0}}^{t_{1}}s(1 - y(s))\, ds + y(t_{0}) = \int_{t_{0}}^{t_1}y'(s)\, ds + y(t_{0}) = y(t_{1}),
+\ea
+a contradiction. Therefore $x(t) \geq y(t)$ for all $t$. That is, $x(t) \geq 1 - e^{-t^2/2}$ for all $t \geq 0$.
+\hq
+
+\sub{Solution to Fall 2009, \#7}\label{f097}
+We have
+\ba
+\pr_{t}\wt{u}(x, t) &= \frac{\pr}{\pr t}\frac{1}{\sqrt{4\pi t}}\int_{-\infty}^{\infty}e^{-s^2/4t}u(x, s)\, ds = \int_{-\infty}^{\infty}\frac{\pr}{\pr t}(\frac{e^{-s^2/4t}}{\sqrt{4\pi t}})u(x, s)\, ds \\
+&= \int_{-\infty}^{\infty}\frac{\pr^2}{\pr s^{2}}(\frac{e^{-s^2/4t}}{\sqrt{4\pi t}})u(x, s)\, ds = \int_{-\infty}^{\infty}\frac{e^{-s^2/4t}}{\sqrt{4\pi t}}\frac{\pr^2}{\pr s^2}u(x, s)\, ds\\
+& = \int_{-\infty}^{\infty}\frac{e^{-s^2/4t}}{\sqrt{4\pi t}}\lap_{x} u(x, s)\, ds = \lap_{x}\bigg(\frac{1}{\sqrt{4\pi t}}\int_{-\infty}^{\infty}e^{-s^2/4t}u(x, s)\, ds\bigg) = \lap \wt{u}(x, t)
+\ea
+where the third equality is because $e^{-s^2/4t}/\sqrt{4\pi t}$ is a solution to the heat equation.
+Furthermore, as $e^{-s^2/4t}/\sqrt{4\pi t}$ is a heat kernel and converges to the Dirac delta distribution in the sense of distributions as $t \rightarrow 0$,
+we have
+\ba
+\wt{u}(x, 0) = \lim_{t \rightarrow 0}\wt{u}(x, t) = \lim_{t \rightarrow 0}\int_{-\infty}^{\infty}\frac{e^{-s^2/4t}}{\sqrt{4\pi t}}u(x, s)\, ds = u(x, 0) = \vp(x).
+\ea
+\hq
+
+\sub{Solution to Fall 2009, \#8}\label{f098}
+\ssb{Solution to $(i)$}
+Expanding into Fourier series, we have
+$u(x, y, t) = \sum_{m, n \in \Z^2}\wh{u}(m, n, t)e^{i(mx + ny)}$.
+Then
+$$\wh{u}_{tt}(m, n, t) + a\wh{u}_{t}(m, n, t) + (m^2 + n^2)\wh{u}(m, n, t) = 0$$
+which implies $\wh{u}(m, n, t) = e^{kt}$ where $k^2 + ak + (m^2 + n^2) = 0$.
+That is, $k = \frac{1}{2}(-a \pm \sqrt{a^2 - 4(m^2 + n^2)})$.
+Then $\wh{u}(0, 0, t) = A_{00} + B_{00}e^{-at}$ and for $m^2 + n^2 \geq 1$,
+\ba
+\wh{u}(m, n, t) = e^{-\frac{a}{2}t}(A_{mn}\cos(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t) + B_{mn}\sin(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t)).
+\ea
+Therefore
+\ba
+&u(x, y, t) = A_{00} + B_{00}e^{-at}\\
+&+ \sum_{\st{m, n \in \Z^2\\(m, n) \neq (0, 0)}}e^{-\frac{a}{2}t}(A_{mn}\cos(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t) + B_{mn}\sin(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t))e^{i(mx + ny)}.
+\ea
+\hq
+
+\ssb{Solution to $(ii)$}
+We have
+\ba
+u_{t} &= -aB_{00}e^{-at}+ \sum_{(m, n) \neq (0, 0)}e^{i(mx + ny)}(-\frac{a}{2})e^{-\frac{a}{2}t}(A_{mn}\cos(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t)\\
+ &\hspace{1in}+ B_{mn}\sin(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t))\\
+  &+\,\, \sum_{(m, n) \neq (0, 0)}e^{i(mx + ny)}e^{-\frac{a}{2}t}(-A_{mn}\frac{\sqrt{4(m^2 + n^2) - a^2}}{2}\sin(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t)\\
+   &\hspace{1.5in}+ B_{mn}\frac{\sqrt{4(m^2 + n^2) - a^2}}{2}\cos(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t).
+\ea
+Therefore
+$$\int_{T^2}\abn{\pr_{t}u}^{2}\, dx \lsm e^{-at}$$
+where the implied constant in the ``$\lsm$" is absolute. Since
+\ba
+\pr_{x}u = \sum_{(m, n) \neq (0, 0)}e^{-\frac{a}{2}t}(&A_{mn}\cos(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t)\\
+& + B_{mn}\sin(\frac{1}{2}\sqrt{4(m^2 + n^2) - a^2}t))im e^{i(mx + ny)},
+\ea
+it follows that $$\int_{T^2}\abn{\del_{x}u}^{2}\,dx \lsm e^{-at}$$
+where the implied constant is once again absolute. Therefore $E(t)$ decays like some (absolute) constant multiple of $e^{-at}$ and hence the
+rate of decay is $a$.
+\hq

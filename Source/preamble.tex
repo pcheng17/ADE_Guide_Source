@@ -1,0 +1,219 @@
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsthm, amsmath, amsfonts, amssymb}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+
+\overfullrule=10pt
+
+\newcommand{\Z}[0]{\mathbb{Z}}
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\Q}[0]{\mathbb{Q}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\D}[0]{\mathbb{D}}
+\newcommand{\Om}[0]{\Omega}
+\newcommand{\ta}[0]{\theta}
+\newcommand{\pp}[0]{\perp}
+\newcommand{\bs}[0]{\setminus}
+\newcommand{\ld}[0]{\lambda}
+\newcommand{\vep}[0]{\varepsilon}
+\newcommand{\re}[0]{\operatorname{Re}}
+\newcommand{\im}[0]{\operatorname{im}}
+\newcommand{\supp}[0]{\operatorname{supp}}
+\newcommand{\lsm}[0]{\lesssim}
+\newcommand{\pr}[0]{\partial}
+\newcommand{\om}[0]{\omega}
+\newcommand{\Ld}[0]{\Lambda}
+\newcommand{\vp}[0]{\varphi}
+\newcommand{\var}[0]{\mathrm{Var}}
+\newcommand{\E}[0]{\mathbf{E}}
+\newcommand{\pb}[0]{\mathbf{P}}
+\newcommand{\cov}[0]{\textrm{Cov}}
+\newcommand{\tr}[0]{\mathrm{tr}}
+\newcommand{\lap}[0]{\Delta}
+\newcommand{\del}[0]{\nabla}
+\newcommand{\ba}[0]{\[\begin{aligned}}
+\newcommand{\ea}[0]{\end{aligned}\]}
+\newcommand{\hq}[0]{\hfill\qed}
+\newcommand{\kap}[0]{\kappa}
+\newcommand{\sq}[1]{\{#1\}}
+
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\st}[1]{\substack{#1}}
+\newcommand{\sub}[1]{\subsection*{#1}}
+\newcommand{\ssb}[1]{\subsubsection*{#1}}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\abb}[1]{\bigg| #1 \bigg|}
+\newcommand{\abn}[1]{|#1|}
+
+\newcommand{\nm}[1]{\left\|#1\right\|}
+\newcommand{\nmb}[1]{\bigg\| #1 \bigg\|}
+\newcommand{\nms}[1]{\| #1 \|}
+
+\newcommand{\ip}[1]{\left\langle #1 \right\rangle}
+\newcommand{\ips}[1]{\langle #1 \rangle}
+\newcommand{\ipb}[1]{\bigg\langle #1 \bigg\rangle}
+
+\newcommand{\smat}[4]{\left(\begin{smallmatrix} #1 & #2 \\ #3 & #4\end{smallmatrix}\right)}
+\newcommand{\svt}[2]{\left(\begin{smallmatrix} #1 \\ #2\end{smallmatrix}\right)}
+\newcommand{\pmat}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4\end{pmatrix}}
+\newcommand{\vct}[2]{\begin{pmatrix} #1 \\ #2\end{pmatrix}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Calligraphic Symbols
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% Vectors --- bolded vectors
+\newcommand{\vA}{\textbf{A}}
+\newcommand{\vB}{\textbf{B}}
+\newcommand{\vC}{\textbf{C}}
+\newcommand{\vD}{\textbf{D}}
+\newcommand{\vE}{\textbf{E}}
+\newcommand{\vF}{\textbf{F}}
+\newcommand{\vG}{\textbf{G}}
+\newcommand{\vH}{\textbf{H}}
+\newcommand{\vI}{\textbf{I}}
+\newcommand{\vJ}{\textbf{J}}
+\newcommand{\vK}{\textbf{K}}
+\newcommand{\vL}{\textbf{L}}
+\newcommand{\vM}{\textbf{M}}
+\newcommand{\vN}{\textbf{N}}
+\newcommand{\vO}{\textbf{O}}
+\newcommand{\vP}{\textbf{P}}
+\newcommand{\vQ}{\textbf{Q}}
+\newcommand{\vR}{\textbf{R}}
+\newcommand{\vS}{\textbf{S}}
+\newcommand{\vT}{\textbf{T}}
+\newcommand{\vU}{\textbf{U}}
+\newcommand{\vV}{\textbf{V}}
+\newcommand{\vW}{\textbf{W}}
+\newcommand{\vX}{\textbf{X}}
+\newcommand{\vY}{\textbf{Y}}
+\newcommand{\vZ}{\textbf{Z}}
+\newcommand{\va}{\textbf{a}}
+\newcommand{\vb}{\textbf{b}}
+\newcommand{\vc}{\textbf{c}}
+\newcommand{\vd}{\textbf{d}}
+\newcommand{\ve}{\textbf{e}}
+\newcommand{\vf}{\textbf{f}}
+\newcommand{\vg}{\textbf{g}}
+\newcommand{\vh}{\textbf{h}}
+\newcommand{\vi}{\textbf{i}}
+\newcommand{\vj}{\textbf{j}}
+\newcommand{\vk}{\textbf{k}}
+\newcommand{\vl}{\textbf{l}}
+\newcommand{\vm}{\textbf{m}}
+\newcommand{\vn}{\textbf{n}}
+\newcommand{\vo}{\textbf{o}}
+%\newcommand{\vp}{\textbf{p}}
+\newcommand{\vq}{\textbf{q}}
+\newcommand{\vr}{\textbf{r}}
+\newcommand{\vs}{\textbf{s}}
+\newcommand{\vt}{\textbf{t}}
+\newcommand{\vu}{\textbf{u}}
+\newcommand{\vv}{\textbf{v}}
+\newcommand{\vw}{\textbf{w}}
+\newcommand{\vx}{\textbf{x}}
+\newcommand{\vy}{\textbf{y}}
+\newcommand{\vz}{\textbf{z}}
+
+% Analysis
+\newcommand{\indi}{\mathds{1}}
+\newcommand{\ep}{\epsilon}
+
+% Differential operators
+\renewcommand{\d}{\partial}
+
+% Special functions
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\arcsinh}{\operatorname{arcsinh}}
+\newcommand{\arccosh}{\operatorname{arccosh}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\arccsch}{\operatorname{arccsch}}
+\newcommand{\arcsech}{\operatorname{arcsech}}
+\newcommand{\arccoth}{\operatorname{arccoth}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Si}{\operatorname{Si}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+% Operator related
+\newcommand{\PV}{\operatorname{PV}}
+
+% Linear Algebra
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\spn}{\operatorname{span}} % Note: not \span
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\mult}{\operatorname{mult}} % Note: not \multi
+
+% Define command for average integral (integral with a dash through it)
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$}
+\vcenter{\hbox{$#2#3$}}\kern-.5\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+
+% Reporting eigenvalues/eigenvectors of 2x2 matrices - used for phase plane problems
+\newcommand{\evev}[6]{\left\{\begin{array}{l} \text{eigenvalue} \,\, \lambda_1 = #1 \,\, \text{with} \,\, \text{eigenvector} \,\, v_1 = \vct{#3}{#4} \\ \vspace*{-0.3cm} \\ \text{eigenvalue} \,\, \lambda_1 = #2 \,\, \text{with} \,\, \text{eigenvector} \,\, v_2 = \vct{#5}{#6} \end{array} \right.}
+
+% Separating rows in arrays
+\newcommand{\asep}{\vspace*{-0.3cm} \\}
+
+
+
+\newtheorem{claim}{Claim}
+\newtheorem*{thm}{Theorem}
+\newtheorem{lemma}[claim]{Lemma}
+\newtheorem{prop}[claim]{Proposition}
+\newtheorem{cor}[claim]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+\clubpenalty=1000
+\widowpenalty=1000
+

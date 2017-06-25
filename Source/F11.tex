@@ -1,0 +1,438 @@
+\noindent The solution to Fall 2011, \#1 is omitted.
+
+
+\subsection*{Solution to Fall 2011, \#2}
+\label{F11Q2}
+
+\subsubsection*{Solution to $2a$}
+
+Since $\nabla \cdot \vB = 0$, our PDE becomes
+$$ u_t = \Delta (u^2) + \vB \cdot \nabla u $$
+Let $M$ be such that $|u(x,0)| < M$ for all $x$, and let $v := u - M - \epsilon t$. Then, $\nabla v = \nabla u$, $\Delta v = \Delta u$, and $v_t = u_t - \epsilon$. Thus
+\begin{align}
+\notag v_t &= u_t - \epsilon \\
+\notag &= \Delta (u^2) + \vB \cdot \nabla u - \epsilon \\
+\notag &= 2(|\nabla u|^2 + u \Delta u) + \vB \cdot \nabla v - \epsilon \\
+\label{f112a1} &= 2(|\nabla v|^2 + (v + M + \epsilon t) \Delta v) + \vB \cdot \nabla v - \epsilon
+\end{align}
+Furthermore, note that $v(x,0) = u(x,0) - M < 0$. We claim that $v(x,t) < 0$ for all $x$ and $t$. Suppose not, which would imply that there exists a first time $t_0$ and a corresponding $x_0$ such that $v(x_0,t_0) = 0$. Since $v(x,t') < 0$ for all $t' < t_0$ and $v(x,t_0) \leq 0$ for all $x$, we must have
+$$v_t(x_0,t_0) \geq 0, \quad \text{and} \quad \Delta v(x_0,t_0) \leq 0$$
+Thus, by \eqref{f112a1}, we have
+$$ 0 \leq v_t (x_0,t_0) = 2(M+\epsilon t_0) \Delta v(x_0,t_0) - \epsilon < 0$$
+which is a contradiction. Hence, we must have $v(x,t) < 0 $ for all $x$ and $t$. This implies that
+$$ u(x,t) < M + \epsilon t $$
+for all $x$ and $t$. Therefore, sending $\epsilon \to 0$ shows
+$$ u(x,t) < M $$
+for all $x$ and $t$.
+
+In order to show $u$ is bounded below for all $x$ and $t$, we needed to make one extra assumption about $u$. Otherwise, we're not sure how to prove $u$ is bounded below
+
+Fix arbitrary $\delta > 0$. We will show that if $u$ satisfies $u_t = \Delta (u^2) + \vB \cdot \nabla u$ and $u(x,0) < - \delta$, then $u(x,t) \leq 0$ for all $x$ and $t$. Since $u(x,0) < -\delta$ for all $x$, we can choose $\epsilon$ sufficiently small such that $\sup_{x} u(x,0) + \epsilon < 0$. Let
+$$ v := u + \lambda \epsilon e^{-\lambda t} $$
+where $\lambda$ is to be chosen later. Then,
+\begin{align}
+\notag v_t &= u_t - \lambda \epsilon e^{-\lambda t} \\
+\notag &= -\Delta (u^2) + \vB \cdot \nabla u - \lambda \epsilon e^{-\lambda t} \\
+\notag &= -2 (|\nabla u|^2 + u \Delta u) + \vB \cdot \nabla u - \lambda \epsilon e^{-\lambda t} \\
+\label{f112a2} &= -2 (|\nabla v|^2 + (v-\epsilon e^{-\lambda t}) \Delta v) + \vB \cdot \nabla v - \lambda \epsilon e^{-\lambda t}
+\end{align}
+Note $v(x,0) = u(x,0 < 0$. We claim that $v(x,t) < 0$ for all $x$ and $t$. Suppose not, which would imply that there exists a first time $t_0$ and a corresponding $x_0$ such that $v(x_0,t_0) = 0$. Since $v(x,t') < 0$ for all $t' < t_0$ and $v(x,t_0) \leq 0$ for all $x$, we must have
+$$v_t(x_0,t_0) \geq 0, \quad \text{and} \quad \Delta v(x_0,t_0) \leq 0$$
+Thus, by \eqref{f112a2}, we have
+$$ 0 \leq v_t(x_0,t_0) = -2(-\epsilon e^{-\lambda t_0}) \Delta v(x_0,t_0) - \lambda \epsilon e^{-\lambda t_0} < 0$$
+for sufficiently large $\lambda$. Thus, we have a contradiction, nad hence,
+$$ u(x,t) < -\epsilon e^{-\lambda t} \leq -\epsilon $$
+for all $x$ and $t$. Letting $\epsilon \to 0$ shows $u(x,t) \leq 0$ for all $x$ and $t$. Thus, if $u$ satisfies $ u_t = \Delta (u^2) + \vB \cdot \nabla u $ and $u(x,0) > \delta > 0$, then we also have
+$$ (-u)_t = -\Delta ((-u)^2) + \vB \cdot \nabla (-u), \quad \text{and} \quad (-u)(x,0) < -\delta $$
+Therefore, by our work above, we have $-u(x,t) \leq 0$ for all $x$ and $t$. Thus, $u(x,t) \geq 0$ for all $x$ and $t$, which implies $u$ is bounded below. Again, this result only holds if $u(x,0) > \delta > 0$ for arbitrary $\delta$. \hfill \qed
+
+
+\subsubsection*{Solution to $2b$}
+
+We consider the equation
+$$ u_t = \Delta (u^2) + \nabla \cdot (\vB u) $$
+Note that we've relabeled $\theta$ as $u$ and $v$ as $\vB$. We aim to show that if $|\nabla \cdot \vB| \leq M$ for all $x \in \R^n$ and if $u(x,0) \leq 1$, then $u(x,t) \leq e^{Mt}$ for all $t > 0$.
+
+Fix arbitrary $\epsilon > 0$. Let $\eta := e^{Mt}$ and $w := u - \eta - \epsilon e^{\lambda t}$ where $\lambda$ is to be chosen later. Then,
+$$ \eta_t = Me^{Mt} \geq (\nabla \cdot \vB) \eta = \nabla \cdot (\vB \eta) $$
+Since
+$$ \Delta (w^2) = \Delta (u^2) - 2(\eta + \epsilon e^{\lambda t}) \Delta u, \quad \nabla u = \nabla w, \quad \Delta u = \Delta w $$
+we have
+\begin{align}
+\notag w_t &= u_t - \eta_t  - \lambda \epsilon e^{\lambda t} \\
+\notag &= \Delta (u^2) + \nabla \cdot (\vB u) - \eta_t - \lambda \epsilon e^{\lambda t} \\
+\notag &\leq \Delta (w^2) + 2(\eta + \epsilon e^{\lambda t}) \Delta u + \nabla \cdot (\vB u) - \nabla \cdot (\vB \eta) - \lambda \epsilon e^{\lambda t} \\
+\label{f112b1} &= \Delta (w^2) + 2(\eta + \epsilon e^{\lambda t}) \Delta w + (\nabla \cdot \vB)(w + \epsilon e^{\lambda t}) + \vB \cdot \nabla w - \lambda \epsilon e^{\lambda t}
+\end{align}
+Note $w(x,0) = u(x,0) - 1 - \epsilon < 0$ since $u(x,0) \leq 1$.
+
+We claim that $w(x,t) < 0$ for all $x$ and $t$. Suppose note, which would imply that there exists a first time $t_0$ and a corresponding $x_0$ such that $w(x_0,t_0) = 0$. Since $w(x,t') < 0$ for all $t' < t_0$ and $w(x,t_0) \leq 0$ for all $x$, we must have
+$$ w_t(x_0,t_0) \geq 0, \quad \text{and} \quad (\Delta w)(x_0,t_0) \leq 0 $$
+Then, by \eqref{f112b1}, we have
+$$ w_t(x_0,t_0) \leq \Delta (w^2)(x_0,t_0) + M \epsilon e^{\lambda t_0} - \lambda \epsilon e^{\lambda t_0} $$
+Note $\Delta (w^2) = 2 (\left| \nabla w \right|^2 + w \Delta w)$, and thus, $\Delta (w^2)(x_0,t_0) = 0$. Hence,
+$$ w_t(x_0,t_0) \leq (M-\lambda)\epsilon e^{\lambda t_0} $$
+Choosing $\lambda = 2M$ would yield a contradiction since $w_t(x_0,t_0) \geq 0$. Therefore, no such initial time exists for which $w(x_0,t_0) = 0$, and hence, $w(x,t) < 0$ for all $x$ and $t$.
+
+Finally, we have
+$$ u(x,t) < e^{Mt} + \epsilon e^{2Mt} $$
+for all $t$. Taking $\epsilon \to 0$ yields
+$$ u(x,t) \leq e^{Mt} $$
+for all $t>0$. \hfill \qed
+
+\subsection*{Solution to Fall 2011, \#3}
+\label{F11Q3}
+
+\subsubsection*{Solution to $3a$}
+
+Taking the Fourier transform, we obtain
+$$ \hat{u}_t = -4 \pi^2 |\xi|^2 \hat{u}_t + \hat{u} \quad \implies \quad \hat{u}_t = \frac{\hat{u}}{1 + 4\pi^2|\xi|^2} $$
+Since $u \in L^2(\R^n)$ and $\frac{1}{1+4 \pi^@ |\xi|^2} \in L^2(\R^n)$, we have
+$$ u_t = u \ast \left[ \frac{1}{1+4 \pi^2 |\xi|^2} \right]^{v} $$
+Observe that
+\begin{align*}
+\left[ \frac{1}{1+4 \pi^2 |\xi|^2} \right]^{v} &= \int_{\R^n} \frac{1}{1+4 \pi^2 |\xi|^2} e^{2 \pi i \xi \cdot x} \, d \xi \\
+&= \frac{1}{(2\pi)^n} \int_{\R^n} \frac{1}{1+|\xi|^2} e^{i \xi \cdot x} \, d \xi
+\end{align*}
+Then, let
+$$ G(x) = \frac{1}{(2\pi)^n} \int_{\R^n} \frac{1}{1+|\xi|^2} e^{i \xi \cdot x} \, d \xi $$
+so we have
+$$ u_t(x,t) = \int_{\R^n} u(y,t) G(x-y) \, dy $$
+Finally,
+$$ \int_0^t u_t(x,s) \, ds = u(x,t) - u(x,0) = u(x,t) - u_0(x) $$
+and thus,
+$$ u(x,t) = u_0(x) + \int_0^t \int_{\R^n} u(y,s) G(x-y) \, dy ds $$
+\hfill \qed
+
+\subsubsection*{Solution to $3b$}
+From our above work, for any $0 \leq s \leq T$,
+\begin{align*}
+\left| \left| \int_{\R^n} G(x-y) u(y,s) \, dy \right| \right|_{L^2(dx)} &= ||u_t||_{L^2(dx)} = ||\hat{u}_t||_{L^2(d\xi)} \\
+&= \left| \left| \frac{\hat{u}}{1 + 4\pi^2|\xi|^2} \right| \right|_{L^2(d\xi)}
+\leq ||\hat{u}||_{L^2(d \xi)} = ||u||_{L^2(dx)} = M
+\end{align*}
+\hfill \qed
+
+\subsubsection*{Solution to $3c$}
+
+Let $F(x,s) := \int_{\R^n} G(x-y) u(y,s) \, dy$. By Minkowski's integral inequality,
+$$ \left| \left| \int_0^t \int_{\R^n} G(x-y) u(y,s) \, dy ds \right| \right|_{L^2(dx)} = \left| \left| \int_0^t F(x,s) \, ds \right| \right|_{L^(dx)} \leq \int_0^t ||F(x,s)||_{L^2(dx)} \, dx \leq Mt $$
+Then, applying the reverse triangle inequality to the result of part (a) yields
+$$ ||u||_{L^2(dx)} \leq ||u_0||_{L^2(dx)} + Mt $$
+Thus,
+$$ M \geq ||u_0||_{L^2(dx)} \geq \sup_{t \in [0,T]} \left( ||u(\cdot, t)||_{L^2(dx)} - Mt \right) $$
+\hfill \qed
+
+\begin{rem}
+This is as far as we can go with this problem. Let us know if you have a better solution for part (c).
+\end{rem}
+
+
+
+\subsection*{Solution to Fall 2011, \#4}
+\label{F11Q4}
+
+Let $u$ be a smooth function such that $u_{t} = \Delta(u^{4})$ in $|x| < 1$ and $u = 0$ on $|x| = 1$.
+
+We prove the problem under the two (physically reasonable) assumptions. We will assume that $u(x, 0)$ is bounded for all $|x| \leq 1$
+and $u(x, t) \geq 0$ for all $(x, t) \in \{x: |x| \leq 1\} \times [0, \infty)$.
+Let $v := (4/3)u^{3}$. Then $v(x, t) \geq 0$ for all $(x, t)$ and
+\begin{align}\label{f114eq1}
+v_{t} - 3v\Delta v - |\nabla v|^{2} = 0
+\end{align}
+in $|x| < 1$ and $v = 0$ on $|x| = 1$. Indeed,
+\begin{align*}
+3v\Delta v + |\nabla v|^{2} = 48 u^{4}\abn{\nabla u}^{2} + 16u^{5}\Delta u = 4u^{2}(12 u^{2}|\nabla u|^{2} + 4u^{3} \Delta u) = 4u^{2}\Delta(u^{4}) = 4u^{2}u_{t} = v_{t}.
+%v_{t} = 4u^{2}u_{t} = 4u^{2}\Delta(u^{4})= 4u^{2}(12 u^{2}|\nabla u|^{2} + 4u^{3} \Delta u)= 48 u^{4}\abn{\nabla u}^{2} + 16u^{5}\Delta u =3v\Delta v + |\nabla v|^{2}
+\end{align*}
+We now prove a maximum principle for \eqref{f114eq1}.
+\begin{lemma}\label{F11Q4lem1}
+Let $U_{T} := \{x \in \R^{d}: |x| < 1\} \times (0, T]$ and $\Gamma_{T} := \ov{U}_{T} \bs U_{T}$.
+Let $v$ be as above. Then for every $T > 0$, $\max_{\ov{U}_{T}}v = \max_{\Gamma_{T}}v.$
+\end{lemma}
+\begin{proof}
+Fix an arbitrary $T > 0$. For every $\vep > 0$, let $v_{\vep}(x, t) := v(x, t) + \vep e^{-At}$ where $A = A(T)$ is to be chosen later.
+We compute
+\begin{align*}
+(v_{\vep})_{t} - 3v_{\vep}\Delta v_{\vep} - \abn{\nabla v_{\vep}}^{2}&= v_{t} - \vep Ae^{-At} - 3(v + \vep e^{-At})\Delta v - |\nabla v|^{2}\\
+& = -\vep Ae^{-At} - 3\vep e^{-At}\Delta v = -\vep e^{-At}(A + 3\Delta v).
+\end{align*}
+If $\nms{\Delta v}_{L^{\infty}(U_{T})} \neq 0$, then we choose $A = 10\nms{\Delta v}_{L^{\infty}(U_{T})}$ and the above calculation shows that
+$(v_{\vep})_{t} - 3v_{\vep}\Delta v_{\vep} - \abn{\nabla v_{\vep}}^{2} < 0$.
+
+On the other hand, if $\nms{\Delta v}_{L^{\infty}(U_{T})} = 0$, then we choose $A = 1$. With this choice of $A$, since $\nms{\Delta v}_{L^{\infty}(U_{T})} = 0$
+and $\Delta v$ is continuous, $\Delta v = 0$ everywhere in $U_{T}$. Therefore in this case once again, $(v_{\vep})_{t} - 3v_{\vep}\Delta v_{\vep} - \abn{\nabla v_{\vep}}^{2} < 0$.
+
+We now will show that
+\begin{align}\label{F11Q4veps}
+\max_{\ov{U}_{T}}v_{\vep} = \max_{\Gamma_{T}}v_{\vep}.
+\end{align}
+Suppose there exists an $(x_{0}, t_{0}) \in U_{T}$
+with $v_{\vep}(x_{0}, t_{0}) = \max_{\ov{U}_{T}}v_{\vep}$, such a point exists since $\ov{U}_{T}$ is compact and $v_{\vep}$ is smooth.
+Since $v_{\vep}$
+attains a maximum at $(x_{0}, t_{0})$, $(v_{\vep})_{t}(x_{0}, t_{0}) \geq 0$ (note that $(v_{\vep})_{t}(x_{0}, t_{0}) = 0$ if $t_{0} < T$, we only get
+$\geq 0$ in the case if $t_{0} = T$), $(\nabla v_{\vep})(x_{0}, t_{0}) = 0$, and $\Delta(v_{\vep})(x_{0}, t_{0}) \leq 0$.
+Since we assumed $u \geq 0$ everywhere, $v(x_{0}, t_{0}) = (4/3)u(x_{0}, t_{0})^{3}\geq 0$ and hence $v_{\vep}(x_{0}, t_{0}) > 0$.
+Therefore at $(x_{0}, t_{0})$, $(v_{\vep})_{t} - 3v_{\vep}\Delta v_{\vep} - \abn{\nabla v_{\vep}}^{2} \geq 0$, a contradiction.
+This proves \eqref{F11Q4veps} and letting $\vep \rightarrow 0$ in \eqref{F11Q4veps} completes the proof of the claim.
+\end{proof}
+For arbitrary $T > 0$, the above lemma implies that
+\begin{align*}
+\max_{\ov{U}_{T}}v = \max_{\Gamma_{T}}v = \max_{|x| < 1}v(x, 0) < \infty
+\end{align*}
+where the last equality is because $v = 0$ on $|x| = 1$ and the last inequality is because $v = (4/3)u^{3}$ and we assumed $u(x, 0)$ to be bounded.
+Therefore since $T$ was arbitrary, $u$ is bounded above everywhere in $\{x \in \R^{d}: |x| \leq 1\} \times [0, \infty)$.
+
+Let $$E(t) := \int_{|x| \leq 1} u^{5}\, dx.$$ Since $u \geq 0$ for all $(x, t)$, $E(t) \geq 0$ for all $t$. Taking the time derivative yields
+$$\dot{E}(t) = 5\int_{|x| \leq 1}u^{4}u_{t}\, dx = 5\int_{|x| \leq 1}u^{4}\Delta (u^{4})\, dx = -5\int_{|x| \leq 1}|\nabla(u^{4})|^{2}\, dx \leq 0$$
+where in the third equality we have used that $u = 0$ on $|x| = 1$.
+
+Since $E(0) = \int_{|x| \leq 1}u(x, 0)^{5}\, dx < \infty$
+and $E(t)$ is bounded above (since $u$ is bounded above everywhere) and below, there exists some constant $C$ such that $E(t) \rightarrow C$ as $t \rightarrow \infty$.
+Therefore $|\nabla(u^{4})|^{2} \rightarrow 0$ as $t \rightarrow \infty$
+and hence $u$ tends to a constant as $t \rightarrow \infty$. Since $u = 0$ on $|x| = 1$ for all time, it follows that $u$ vanishes to zero as $t \rightarrow \infty$. \hfill \qed
+
+
+
+\subsection*{Solution to Fall 2011, \#5}
+\label{F11Q5}
+
+\subsubsection*{Solution to $5a$}
+
+By the method of characteristics, we have
+$$
+\begin{array}{lll}
+\dot{t}(s) = 1, \quad t(0) = 0 & \implies & t(s) = s \\
+\dot{x}(s) = f'(z(s)), \quad x(0) = x_0 & \implies & x(s) = x(t) = f'(-x_0)t + x_0 \\
+\dot{z}(s) = 0, \quad z(0) = -x_0 & \implies & z(s) = z(t) = -x_0
+\end{array}
+$$
+Hence, implicitly, the solution is $u(x,t) = -r$ where $x = f'(-r)t + r$. Now, we compute
+$$ u(x,t) = -r \quad \implies \quad \frac{\d u}{\d x} = -\frac{\d r}{\d x} $$
+and
+\begin{align*}
+x = f'(-r)t + r \quad &\implies \quad 1 = - f''(-r) t \frac{\d r}{\d x} + \frac{\d r}{\d x} \\
+&\implies \quad \frac{\d r}{\d x} = \frac{1}{1-f''(-r)t}
+\end{align*}
+Thus,
+$$ \left| \frac{\d u}{\d x} \right| = \frac{1}{|1-f''(-r)t|} $$
+Recall $f''(x) > \theta > 0$ for all $x$, which implies that, by time $t = 1/\theta$, $|u_x|$ will have already blown up. Therefore, $|u_x|$ blows up in finite time. \hfill \qed
+
+\subsubsection*{Solution to $5b$}
+
+First, note that this is exactly Theorem 4 in section 3.4.4 in Evans. We're going to take the result from there, but also show a slightly different proof for the case where $u^- < u^+$.
+
+\vspace{0.2cm}
+
+\noindent
+Recall, to check that a solution is an entropy solution, we need to check the following:
+\begin{enumerate}
+\item The solution is indeed a solution to the PDE in its domain of definition
+
+\item The Rankine-Hugoniot condition is satisfied at the shocks
+
+\item The entropy condition is satisfied near the shocks
+\end{enumerate}
+
+For the case where $u^- > u^+$, the characteristics crash immediately since $f'' > 0$. Let
+$$ u(x,t) := \left\{
+\begin{array}{ll}
+u^- & \text{if} \,\, x < s(t) \\
+u^+ & \text{if} \,\, x > s(t)
+\end{array} \right. $$
+where
+$$ \dot{s}(t) = \frac{f(u^-) - f(u^+)}{u^- - u^+} =: \sigma, \quad s(0) = 0 \quad s(t) = \sigma t $$
+Hence,
+\begin{equation}
+\label{f1151}
+u(x,t) := \left\{
+\begin{array}{ll}
+u^- & \text{if} \,\, \frac{x}{t} < \sigma \\
+u^+ & \text{if} \,\, \frac{x}{t} > \sigma
+\end{array} \right.
+\end{equation}
+Note that $u$ satisfies the Rankine-Hugoniot jump condition. Also,
+$$ (u^{\pm})_t + (f(u^{\pm}))_x = 0 $$
+when $x/t > \sigma$ and $x/t < \sigma$, respectively. Finally, because $u^- > u^+$, the entropy condition is satisfied because $f'' > \theta > 0$. By uniqueness, \eqref{f1151} is the entropy solution when $u^- > u^+$.
+
+\vspace{0.2cm}
+
+If $u^- < u^+$, let
+$$ u(x,t) = \left\{
+\begin{array}{cc}
+u^- & \text{if} \,\, \frac{x}{t} < f'(u^-) \\
+G\left( \frac{x}{t} \right) & \text{if} \,\, f'(u^-) < \frac{x}{t} < f'(u^+) \\
+u^+ & \text{if} \,\, f'(u^+) < \frac{x}{t}
+\end{array} \right. $$
+where $G := (f')^{-1}$.
+Note that $u$ is continuous! To see this, observe that, along the shock curve $x/t = f'(u^-)$, we have
+$$ G\left( \frac{x}{t} \right) = G(f'(u^-)) \quad \implies \quad G\left( \frac{x}{t} \right) = u^- $$
+Similarly, along the shock curve $x/t = f'(u^+)$, we have
+$$ G\left( \frac{x}{t} \right) = G(f'(u^+)) \quad \implies \quad G(\left( \frac{x}{t} \right) = u^+ $$
+Thus, $u$ vacuously satisfies \emph{both} the Rankine-Hugoniot jump condition and the entropy condition. Hence, it remains to check that $u$ satisfies the PDE. Our work in part (a) already shows that in the regions where $u(x,t) = u^{\pm}$, $u$ satisfies the PDE. Observe,
+\begin{align*}
+\left( G\left( \frac{x}{t} \right) \right)_t + \left( f \left( G \left( \frac{x}{t} \right) \right) \right)_x &= G'\left( \frac{x}{t} \right) \left( -\frac{x}{t^2} \right) + f'\left( G\left( \frac{x}{t} \right) \right) G'\left( \frac{x}{t} \right) \frac{1}{t} \\
+&= G'\left( \frac{x}{t} \right) \left( -\frac{x}{t^2} \right) + \frac{x}{t^2} G'\left( \frac{x}{t} \right) \\
+&= 0
+\end{align*}
+Therefore, $u$ is an entropy solution and by uniqueness, it is the entropy solution. \hfill \qed
+
+\subsection*{Solution to \#6}
+\label{F11Q6}
+
+\subsubsection*{Solution to $6a$}
+Fix $(x_0,t_0)$, and define
+$$
+K(x_0,t_0) = \left\{ (x,t) \, : \, x_0 - 3t_0 + 3t \leq x \leq x_0 + t_0 - t, \,\, 0 \leq t \leq t_0 \right\}
+$$
+Furthermore, suppose $u$ and $v$ are solutions to the PDE with the same initial data on the interval $(x_0-3t_0, x_0+t_0)$ and arbitrary initial data elsewhere. Then, $w:= u-v$ satisfies
+\begin{gather*}
+w_{tt} + 2w_{xt} - 3w_{xx} = 0, \quad x \in \R, \,\, t > 0 \\
+w(x,0) = \left\{
+\begin{array}{ll}
+0 & \text{for} \,\, x \in (x_0-3t_0, x_0+t_0) \\
+f(x) & \text{otherwise}
+\end{array} \right. \\
+w_t(x,0) = \left\{
+\begin{array}{ll}
+0 & \text{for} \,\, x \in (x_0-3t_0, x_0+t_0) \\
+g(x) & \text{otherwise}
+\end{array} \right.
+\end{gather*}
+where $f$ and $g$ are arbitrary functions. Define
+$$ E(t) := \frac{1}{2} \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} w_t^2 + 3w_x^2 \, dx $$
+for $0 \leq t \leq t_0$. Then,
+\begin{equation}
+\label{f1161}
+\dot{E}(t) = \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} w_t w_{tt} + 3 w_x w_{xt} \, dx - \frac{1}{2} (w_t^2 + 3w_x^2) \bigg|_{x = x_0 + t_0 - t} - \frac{3}{2} (w_t^2 + 3w_x^2) \bigg|_{x = x_0 -3t_0 + 3t}
+\end{equation}
+Applying integration by parts, we have
+\begin{align*}
+\int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} w_t w_{tt} + 3 w_x w_{xt} \, dx &= \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} w_t w_{tt} - 3 w_{xx} w_{t} \, dx + 3w_x w_t \bigg|_{x=x_0 - 3t_0 + 3t}^{x=x_0 + t_0 - t} \\
+&= \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} -2 w_{xt} w_t \, dx + 3w_x w_t \bigg|_{x=x_0 - 3t_0 + 3t}^{x=x_0 + t_0 - t}
+\end{align*}
+where the second equality is from using the PDE. Then, using integration by parts again yields
+$$ \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} -2 w_{xt} w_t \, dx = -2w_t^2 \bigg|_{x=x_0 - 3t_0 + 3t}^{x=x_0 + t_0 - t} + \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} 2w_{t}w_{xt} \, dx $$
+which implies
+$$ \int_{x_0 - 3t_0 + 3t}^{x_0 + t_0 - t} -2w_{xt} w_t \, dx = -w_t^2 \bigg|_{x=x_0 - 3t_0 + 3t}^{x=x_0 + t_0 - t} $$
+Plugging everything back into \eqref{f1161} yields
+\begin{align*}
+\dot{E}(t) &= -w_t^2 \bigg|_{x=x_0 - 3t_0 + 3t}^{x=x_0 + t_0 - t} + 3w_x w_t \bigg|_{x=x_0 - 3t_0 + 3t}^{x=x_0 + t_0 - t}- \frac{1}{2} (w_t^2 + 3w_x^2) \bigg|_{x = x_0 + t_0 - t} - \frac{3}{2} (w_t^2 + 3w_x^2) \bigg|_{x = x_0 -3t_0 + 3t} \\
+&= \left[ 3w_x w_t -\frac{3}{2} w_t^2 - \frac{3}{2} w_x^2 \right]_{x = x_0 + t_0 - t} +  \left[-3w_x w_t - \frac{1}{2} w_t^2 - \frac{9}{2} w_x^2 \right]_{x = x_0 - 3t_0 + 3t} \\
+&= -\frac{3}{2} (w_t - w_x)^2 \bigg|_{x=x_0 + t_0 -t} - \frac{1}{2} (w_t + 3w_x)^2 \bigg|_{x = x_0 - 3t_0 + 3t} \leq 0
+\end{align*}
+for all $0 \leq t \leq t_0$. Hence, we've shown $E(t) \leq E(0)$. Furthermore, note
+$$
+E(0) = \frac{1}{2} \int_{x_0 - 3t_0}^{x_0+t_0} w_t(x,0)^2 + 3w_x(x,0)^2 \, dx = 0
+$$
+so $E(t) = 0$ for all $0 \leq t \leq t_0$. This implies that $w_t \equiv 0$ and $w_x \equiv 0$ in $K(x_0,t_0)$. Putting this together with the fact that $w(x,0) = w_t(x,0) = 0$ on $(x_0-3t_0, x_0+t_0)$, we have $w \equiv 0$ in $K(x_0,t_0)$. Hence, $u \equiv v$ in $K(x_0,t_0)$. Therefore, initial data outside of the interval $(x_0-3t_0,x_0+t_0)$ does not affect the values of the solution in $K(x_0,t_0)$, which includes the point $(x_0,t_0)$. Therefore, the value of the solution at the point $(x_0,t_0)$ depends on at most the values of the initial data in the interval $(x_0-3t_0, x_0+ t_0)$.  \hfill \qed
+
+\subsubsection*{Solution to $6b$}
+
+Suppose $u$ and $v$ are solutions to the PDE with compactly supported initial data. Then $w:=u-v$ satisfies
+\begin{gather*}
+w_{tt} + 2w_{xt} - 3w_{xx} = 0, \quad x \in \R, \,\, t > 0 \\
+w(x,0) = 0 \\
+w_t(x,0) = 0
+\end{gather*}
+Note that, because the initial data is compactly supported, our work in part (a) guarantees that $u$ and $v$ are compactly supported for all time. To see this, notice that if we pick $(x_0,t_0)$ such that the interval $(x_0 - 3t_0, x_0 + t_0)$ is outside the support of the initial data, then the value of the solutions at $(x_0,t_0)$ will be 0. For each $t > 0$, we can always find an $x$ of sufficiently large magnitude such that this happens. Hence, solutions are compactly supported for all time. This then implies that $w$ is compactly supported for all time. Now, define
+$$ E(t) = \frac{1}{2} \int_{\R} w_t^2 + 3w_x^2 \, dx $$
+We compute, using integration parts along the way,
+\begin{align*}
+\dot{E}(t) &= \int_{\R} w_t w_{tt} + 3w_x w_{xt} \, dx \\
+&=\int_{\R} w_t w_{tt} - 3x_{xx} w_t \, dx \\
+&= \int_{\R} -2w_{xt} w_t \, dx
+\end{align*}
+Because $w$ is compactly supported, the boundary terms vanish. Another application of integration by parts yields
+$$ \int_{\R} -2w_{xt} w_t \, dx = \int_{\R} w_{t} w_{xt} \, dx \quad \implies \quad \int_{\R} -2w_{xt} w_t \, dx = 0 $$
+Hence, we've shown that $\dot{E}(t) = 0$, which implies that $E(t) = E(0) = 0$ for all time. Thus, $w_t \equiv 0$ and $w_x \equiv 0$ for all time, and because $w(x,0) = w_t(x,0) = 0$, we must have $w \equiv 0$ for all time. Therefore, $u \equiv v$, so solutions to the PDE are unique. \hfill \qed
+
+
+
+
+
+
+
+
+
+\subsection*{Solution to Fall 2011, \#7}
+\label{F11Q7}
+
+\subsubsection*{Solution to $7a$}
+This problem might be missing some assumptions, since, for example, $\vf=\mathbf{0}$ is a counterexample. Thus, we are going to make the assumption that $\vf \not\equiv 0$, and that, at the equilibrium points, $(f_1)_u \neq 0$ and $(f_1)_v \neq 0$.
+
+Consider the Jacobian of $\vf(\vu)$,
+$$ J[\vf(\vu)] = \left(
+\begin{array}{cc}
+(f_1)_u & (f_1)_v \\
+(f_2)_u & (f_2)_v
+\end{array}
+\right)
+$$
+We aim to show that eigenvalues of this matrix, when evaluated at the equilibrium points, are always of opposite signs, which would then imply that any stationary points of the system must be saddle points. Observe that
+\begin{equation}
+\label{F117det}
+\det(J[\vf(\vu)]) = (f_1)_u (f_2)_v - (f_1)_v (f_2)_u
+\end{equation}
+Since we have $(f_1)_u = -(f_2)_v$ and $(f_1)_v = (f_2)_u$, \eqref{F117det} becomes
+$$ \det(J[\vf(\vu)]) = -\left((f_2)_v \right)^2 - \left((f_2)_u \right)^2 \ $$
+Because of our assumptions above, the determinant is negative, implying that the eigenvalues are of opposite signs. Therefore, any equilibrium points are saddle points. \hfill \qed
+
+
+\subsubsection*{Solution to $7b$}
+To show $\vf$ is $C^{\infty}$, we aim to show that both components of $\vf$ are harmonic, and thus smooth. Note that, from our assumptions, we have
+$$ (f_1)_u = -(f_2)_v \quad \implies \quad (f_1)_{uu} = -(f_2)_{vu} $$
+and
+$$ (f_1)_v = (f_2)_u \quad \implies \quad (f_1)_{vv} = (f_2)_{uv} $$
+Thus,
+$$ \Delta f_1 = (f_1)_{uu} + (f_1)_{vv} = 0 $$
+A similar argument would also show $\Delta f_2 = 0$. Therefore, since harmonic functions are smooth, we have that $\vf$ is smooth. \hfill \qed
+
+
+
+
+
+\subsection*{Solution to Fall 2011, \#8}
+\label{F118}
+
+\subsubsection*{Solution to $8a$}
+
+To show that $\lambda > 0$, we multiply the PDE by $u$ and integrate.
+\begin{align*}
+\lambda \int_{\Omega} u^2 \, dx &= -\int_{\Omega} \Delta u u \, dx \\	
+&= \int_{\Omega} |\nabla u|^2 \, dx
+\end{align*}
+We get the second inequality from integration by parts. Note that the integral over the boundary vanishes because $u$ vanishes on the boundary. Because $u$ is nonzero, both integrals are positive, implying that $\lambda > 0$. \hfill \qed
+
+\subsubsection*{Solution to $8b$}
+
+Define $F(u) := \int_U |Du|^2 \, dx$ and $G(u) := \int_U u^2 \, dx$. Suppose $w \in H^1_0(\Omega)$ minimizes $F$ subject to the constraint $G(w) = 1$,  and let $v \in H_0^1(U)$ be arbitrary. By method of Lagrange multipliers,
+$$ F'(w)v = \mu G'(w)v $$
+for some $\mu \in \R$, where $F'(w)v$ is the Frechet derivative of $F$ at $w$ in the direction of $v$. We compute
+\begin{align*}
+F'(w)v &= \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left(F(w+\epsilon v)-F(w)\right) \\
+&= \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left( \int_U |Dw+ \epsilon Dv|^2 \, dx - \int_U |Dw|^2 \, dx \right)	\\
+&= \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left( \int_U 2\epsilon Dw \cdot Dv + \epsilon^2 |Dv|^2 \, dx \right) \\
+&= 2 \int_U Dw \cdot Dv \, dx
+\end{align*}
+and
+\begin{align*}
+G'(w)v &= \lim_{\epsilon \to 0} \frac{1}{\epsilon} (G(w + \epsilon v) - G(w)) \\
+&= \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left( \int_U (w+\epsilon v)^2 \, dx - \int_U w^2 \, dx \right) \\
+&= \lim_{\epsilon \to 0} \frac{1}{\epsilon} \left( \int_U 2 \epsilon wv + \epsilon^2 v^2 \, dx \right) \\
+&= 2 \int_U wv \, dx
+\end{align*}
+Thus, we have
+\begin{equation}
+\label{f118weak}
+	\int_U Dw \cdot Dv \, dx = \mu \int_U wv \, dx
+\end{equation}
+Since this holds for all $v \in H_0^1(U)$, letting $v=w$ yields
+$$ \int_U |Dw|^2 \, dx = \mu \int_U w^2 \, dx \quad \implies \quad \mu = \int_{U} |Dw|^2 \, dx $$
+Hence, $\mu$ is the value achieved by the minimizer of $F$ subject to the constraint $G(w)=1$. Now, applying integration by parts to the integral on the left of \eqref{f118weak} yields
+$$ -\int_U \Delta w v \, dx = \mu \int_U wv \,dx $$
+The integral over the boundary vanishes because $v$ vanishes on the boundary. Therefore, since this holds for all $v \in H_0^1(U)$,
+$$ -\Delta w = \mu w $$
+Finally, let $\varphi$ be any arbitrary eigenfunction of $-\Delta$ with associated eigenvalue $\gamma$ where $\gamma \neq \mu$. Without loss of generality, we may take $\|\varphi\|_{H^1_0(\Omega)} = 1$. Then,
+$$ \mu = \int_U |Dw|^2 \, dx \leq \int_U |D\varphi|^2 \, dx = -\int_U \varphi \Delta \varphi \, dx = \gamma \int_U \varphi^2 \, dx = \gamma $$
+Hence, the value achieved by the minimizer is indeed the smallest eigenvalue. \hfill \qed

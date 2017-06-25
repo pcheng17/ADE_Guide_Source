@@ -1,0 +1,329 @@
+\subsection*{Solution to Spring 2008, \#1}\label{s081}
+\subsubsection*{Solution to $(a)$}
+We have
+\begin{align*}
+(f'(x)g(x) - g'(x)f(x))_{x = 0}^{\ell} &= f'(\ell)g(\ell) - g'(\ell)f(\ell) - f'(0)g(0) + g'(0)f(0)\\
+&= f'(\ell)g(\ell) + g(\ell)f(\ell) = g(\ell)(f'(\ell) + f(\ell)) = 0.
+\end{align*}
+\hfill\qed
+
+\subsubsection*{Solution to $(b)$}
+Let $\ld_{1}$, $\ld_{2}$ be distinct nonzero eigenvalues corresponding to eigenfunctions $u_{1}, u_{2}$.
+Then
+\begin{align*}
+\ld_{1}\int_{0}^{\ell}u_{1}u_{2}\, dx &= \int_{0}^{\ell}-u_{1}''u_{2}\, dx\\
+&= -(u_2u_1' - u_2'u_1)_{x = 0}^{\ell} + \int_{0}^{\ell}u_{2}''u_{1}\, dx\\
+&= -\int_{0}^{\ell}u_{2}''u_{1}\, dx = \ld_{2}\int_{0}^{\ell}u_{2}u_{1}\, dx.
+\end{align*}
+Therefore
+$$(\ld_{1} - \ld_{2})\int_{0}^{\ell}u_{1}u_{2}\, dx = 0.$$
+Since $\ld_{1} \neq \ld_{2}$, $\int_{0}^{\ell}u_{1}u_{2}\, dx = 0$.
+\hfill\qed
+
+\subsubsection*{Solution to $(c)$}
+We claim that this problem has no eigenfunctions corresponding to $\ld = 0$.
+Suppose $y$ is an eigenfunction corresponding to the eigenvalue $\ld = 0$.
+Then
+$$y'' = 0, \quad y'(\ell) + y(\ell) = 0, \quad y(0) = 0.$$
+Therefore $y(x) = ax + b$. Since $y(0) = 0$, $b = 0$. Thus $y = ax$. Since $y'(\ell) + y(\ell) = 0$,
+$a + a\ell = 0$ and hence $a = 0$. Therefore $y$ is the zero function.
+This contradicts that $y$ is an eigenfunction.
+
+Suppose $\ld < 0$. Then $\ld = -\mu$, $\mu > 0$.
+We have
+$$y'' - \mu y = 0, \quad y'(\ell) + y(\ell) = 0, \quad y(0) = 0.$$
+Thus the general solution is
+$$y(x) = Ae^{\sqrt{\mu}x} + Be^{-\sqrt{\mu}x}.$$
+As $y(0) = 0$, $A + B = 0$. We have
+$$y'(x) = A\sqrt{\mu}e^{\sqrt{\mu}x} - B\sqrt{\mu}e^{-\sqrt{\mu}x}.$$
+Thus using $y'(\ell) + y(\ell) = 0$ gives
+\begin{align*}
+A\sqrt{\mu}e^{\sqrt{\mu}\ell} - B\sqrt{\mu}e^{-\sqrt{\mu}\ell} + Ae^{\sqrt{\mu}\ell} + Be^{-\sqrt{\mu}\ell} &= 0\\
+Ae^{\sqrt{\mu}\ell}(\sqrt{\mu} + 1) + Be^{-\sqrt{\mu}\ell}(1 - \sqrt{\mu}) &= 0.
+\end{align*}
+Since $A = -B$, we have
+$$A(e^{\sqrt{\mu}\ell}\sqrt{\mu} + e^{\sqrt{\mu}\ell} - e^{-\sqrt{\mu}\ell} + \sqrt{\mu}e^{-\sqrt{\mu}\ell}) = 0.$$
+If $A = 0$, then $B = 0$, so assume $A \neq 0$ since we want nontrivial solutions. Then
+\begin{align}\label{s08beq1}
+e^{\sqrt{\mu}\ell}\sqrt{\mu} + e^{\sqrt{\mu}\ell} - e^{-\sqrt{\mu}\ell} + \sqrt{\mu}e^{-\sqrt{\mu}\ell} = 0
+\end{align}
+and we want to solve for $\sqrt{\mu}$. Let $\alpha := \sqrt{\mu}$. Then
+\begin{align*}
+\alpha e^{\alpha \ell} + e^{\alpha\ell} - e^{-\alpha \ell} + \alpha e^{-\alpha \ell} &= 0\\
+e^{\alpha\ell}(\alpha + 1) + e^{-\alpha\ell}(\alpha - 1) &= 0.
+\end{align*}
+Let $f(t) := e^{\ell t}(t + 1) + e^{-\ell t}(t - 1)$. Note that $f(0) = 0$.
+Since
+\begin{align*}
+f'(t) &= \ell e^{\ell t}(t + 1) + e^{\ell t} - \ell e^{-\ell t}(t - 1) + e^{-\ell t}\\
+&= \ell e^{\ell t}(t + 1) + e^{\ell t} + e^{-\ell t} + \ell e^{-\ell t} - t\ell e^{-\ell t}\\
+&> \ell(t + 1) + 1 + 1 + \ell - t\ell > 0.
+\end{align*}
+Therefore there are no solutions to \eqref{s08beq1}. Thus there are no eigenfunctions in this case.
+
+Finally, let $\ld > 0$. In this case, the general solution is
+$$y(x) = A\cos(\sqrt{\ld}x) + B\sin(\sqrt{\ld}x).$$
+Since $y(0) = 0$, $A = 0$ and hence $y(x) = B\sin(\sqrt{\ld}x)$ and $y'(x) = B\sqrt{\ld}\cos(\sqrt{\ld}x).$
+Since $y'(\ell) + y(\ell) = 0$,
+$$B\sqrt{\ld}\cos(\sqrt{\ld}\ell) + B\sin(\sqrt{\ld}\ell) = 0.$$
+Since we want nontrivial solutions, assume $B \neq 0$. Then
+$$\sqrt{\ld}\cos(\sqrt{\ld}\ell) + \sin(\sqrt{\ld}\ell) = 0.$$
+Simplifying gives
+$$\tan(\sqrt{\ld}\ell) = -\sqrt{\ld}.$$
+This equation has infinitely many positive solutions.
+\hfill\qed
+
+\subsection*{Solution to Spring 2008, \#2}\label{s082}
+We use method of characteristics. We have $F(p, q, z, x, y) = p^{2} + q^{2} + 1$ and
+\begin{align*}
+\begin{array}{ll}
+\dot{x} = 2p & x(0) = x_{0}\\
+\dot{y} = 2q & y(0) = y_{0}\\
+\dot{z} = 2 & z(0) = 1\\
+\dot{p} = 0 & p(0) = p_{0}\\
+\dot{q} = 0 & q(0) = q_{0}
+\end{array}
+\end{align*}
+where $x_{0}^{2} + y_{0}^{2} = 1$ and $p_{0}^{2} + q_{0}^{2} = 1$.
+Since $u_{\ta} = 0$ on $\Gamma$ and
+$$u_{\ta} = -u_{x}\sin\ta + u_{y}\cos\ta \quad \text{ for $r = 1$},$$
+we have
+$$0 = -p_{0}y_{0} + q_{0}x_{0}.$$
+Therefore $(p_{0}, q{0})$ is orthogonal to $(-y_{0}, x_{0})$. Since $(x_{0}, y_{0})$
+is orthogonal to $(-y_{0}, x_{0})$, $(x_{0}, y_{0})$ and $(p_{0}, q_{0})$ are parallel.
+Then $$(x_{0}, y_{0}) \cdot (p_{0}, q_{0}) = \pm\nms{(x_{0}, y_{0})}\nms{(p_{0}, q_{0})} = \pm 1.$$
+We have
+\begin{align*}
+x(s) &= 2p_{0}s + x_{0}\\
+y(s) &= 2q_{0}s + y_{0}\\
+z(s) &= 2s + 1.
+\end{align*}
+Since $x_{0}p_{0} + y_{0}q_{0} = \pm 1$,
+$$x^{2} + y^{2} = 4p_{0}^{2}s^{2} + 4p_{0}sx_{0} + x_{0}^{2} + 4q_{0}^{2}s^{2} + 4q_{0}sy_{0} + y_{0}^{2} = 4s^{2} \pm 4s + 1.$$
+If we had $x^{2} + y^{2} = 4s^{2} + 4s + 1$, then $x^{2} + y^{2} = z^{2}$ and hence
+$z = \pm \sqrt{x^{2} + y^{2}}$. Since $z(0) = 1$, it follows that $u(x, y) = \sqrt{x^{2} + y^{2}}$.
+On the other hand if we had $x^{2} + y^{2} = 4s^{2} - 4s + 1 = (2s - 1)^{2} = (z - 2)^{2}$
+and hence $z = 2 \pm \sqrt{x^{2} + y^{2}}$. Since $z(0) = 1$, it follows that $u(x, y) = 2 - \sqrt{x^{2} + y^{2}}$.
+Thus we have two solutions, $u(x, y) = \sqrt{x^{2} + y^{2}}$ and $u(x, y) = 2 - \sqrt{x^{2} + y^{2}}$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2008, \#3}\label{s083}
+This problem is the same as Fall 2008, \#6.
+
+\vspace{0.4cm}
+
+We first show that, given initial data with compact support, solutions to the PDE also have compact support. With this, we can then easily prove that the solution is unique. Define
+$$ \Lambda := \max_{|\xi|=1,\,\, 1 \leq l \leq m} |\lambda_l(\xi)| $$
+where $\lambda_l (\xi)$ for $l = 1, 2, \dots, m$ are the eigenvalues of the matrix $A(\xi) = \sum_{j=1}^n \xi_j A_j$. Note that $\xi \in \R^n$, and $\xi_j$ is the $j$th component of $\xi$. Because each $A_j$ is an $m \times m$ symmetric matrix, $A(\xi)$ is also an $m \times m$ symmetric matrix for all $\xi$, so $\Lambda$ is well-defined and real.
+
+\vspace{0.2cm}
+
+Now, we claim that, if $u = 0$ on $B(x_0,t_0) \times \{t = 0\}$, then $u \equiv 0$ within the cone $$ K(x_0,t_0) := \{ (x,t) \, : \, 0 \leq t \leq t_0, \,\, |x-x_0| \leq \Lambda(t_0 - t)\}$$
+To this end, fix $(x_0,t_0)$ so that $u=0$ on $B(x_0,t_0) \times \{t=0\}$. This is possible because $u(x,0) = f(x)$ has compact support. Now, consider the energy
+$$ E(t) := \frac{1}{2} \int_{B(x_0, \Lambda(t_0-t))} |u|^2 \, dx $$
+Differentiating the energy with respect to $t$ yields
+\begin{align*}
+	E'(t) &= \int_{B(x_0, \Lambda(t_0-t))} u \cdot u_t \, dx - \frac{\Lambda}{2} \int_{\d B(x_0, \Lambda(t_0-t))} |u|^2 \, dS(x) \\
+	&= -\int_{B(x_0, \Lambda(t_0-t))} u \cdot \sum_{i=1}^n A_i u_{x_i} \, dx - \frac{\Lambda}{2} \int_{\d B(x_0, \Lambda(t_0-t))} |u|^2 \, dS(x)
+\end{align*}
+We're going to \emph{carefully} apply integration by parts. Fix $1 \leq k \leq n$. We compute
+$$ \int_{B(x_0, \Lambda(t_0-t))} u \cdot A_k u_{x_k} \, dx = \int_{\d B(x_0, \Lambda(t_0-t))} u \cdot A_k u \nu^k \, dx - \int_{B(x_0, \Lambda(t_0-t))} u_{x_k} \cdot A_k u \, dx $$
+where $\nu^k$ is the $k$th component of the outward unit normal $\nu$. Because $A_k$ is symmetric, $u \cdot A u_{x_k} = u_{x_k} \cdot A u$, so we obtain
+$$ \int_{B(x_0, \Lambda(t_0-t))} u \cdot A_k u_{x_k} \, dx = \frac{1}{2} \int_{\d B(x_0, \Lambda(t_0-t))} u \cdot A_k u \nu^k \, dx $$
+Hence,
+\begin{align}
+\label{s08energy}
+	 E'(t) &= -\frac{1}{2} \int_{\d B(x_0, \Lambda(t_0-t))} u \cdot \sum_{i=1}^n \nu^i A_i u \, dx - \frac{\Lambda}{2} \int_{\d B(x_0, \Lambda(t_0-t))} |u|^2 \, dS(x) \\
+\label{s08nrgysimp}	  &= \frac{1}{2} \int_{\d B(x_0, \Lambda(t_0-t))} u \cdot A(\nu) u \, dx - \frac{\Lambda}{2} \int_{\d B(x_0, \Lambda(t_0-t))} |u|^2 \, dS(x)
+\end{align}
+Note that the negative sign that was originally attached to the first integral of \eqref{s08energy} above was absorbed into the definition of $A(\nu)$ since $-\nu$ is still a unit vector. Finally, recall that we can obtain the maximum eigenvalue of a symmetric matrix by maximizing the Rayleigh quotient. Thus, by our definition of $\Lambda$, we have
+$$ \frac{u \cdot A(\nu) u}{u \cdot u} \leq \Lambda \quad \implies \quad u \cdot A(\nu) u \leq \Lambda |u|^2 $$
+Applying this to \eqref{s08nrgysimp} yields $E'(t) \leq 0$. Furthermore, because of how we picked $(x_0,t_0)$, $E(0)=0$. Thus, since $E(t)$ is nonnegative for all $t > 0$, we have $E(t) \equiv 0$ for $0 \leq t \leq t_0$. Therefore, we have shown that $u \equiv 0$ in the cone $K(x_0,t_0)$. This implies that, given initial data that is compactly supported, solutions to the PDE will also be compactly supported.
+
+\vspace{0.2cm}
+
+Now, we can prove that the solution to the PDE is unique. Suppose $u$ and $v$ are both solutions to the PDE. Then, by linearity, $w :=u-v$ also satisfies the PDE with initial data $w(x,0) = 0$. Define
+$$ E(t) := \frac{1}{2} \int_{\R^n} |w|^2 \, dx $$
+and compute
+$$ E'(t) = \int_{\R^n} w \cdot w_t \, dx = -\int_{\R^n} w \cdot \sum_{i=1}^n A_i w_{x_i} \, dx $$
+Applying integration by parts and using the fact that $A_i$ is symmetric for all $i$ yields
+$$ -\int_{\R^n} w \cdot \sum_{i=1}^n A_i w_{x_i} \, dx = \int_{\R^n} w \cdot \sum_{i=1}^n A_i w_{x_i} \, dx $$
+Recall that $w$ is compactly supported from our work above, so the boundary integrals from integration by parts vanish. This implies that $E'(t) = 0$. Finally, we also know $E(0) = 0$, so by non-negativity of our energy, we have $E(t) \equiv 0$ for all time $t$. Hence, $w \equiv 0$, so $u=v$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2008, \#4}\label{s084}
+Observe that $u_{tt} + u_{xt} - 20u_{xx} = 0$ can be written as
+$$(\pr_{t} - 4\pr_{x})(\pr_{t} + 5\pr_{x})u = 0.$$
+Let $v := u_{t} + 5u_{x}$. Then
+\begin{align*}
+v_{t} - 4v_{x}  &= 0\\
+v(x, 0) &= \psi(x) + 5\phi'(x).
+\end{align*}
+Thus
+$$v(x, t) = \psi(x + 4t) + 5\phi'(x + 4t)$$
+(where for clarity, $\phi'(x + 4t) = (\phi')(x + 4t)$, that is the function $\phi'$ evaluated at $x + 4t$).
+Then
+\begin{align*}
+u_{t} + 5u_{x} &= \psi(x + 4t) + 5\phi'(x + 4t)\\
+u(x, 0) &= \phi(x)
+\end{align*}
+and hence
+\begin{align*}
+u(x, t) &= \phi(x - 5t) + \int_{0}^{t}\psi(x + 5(s - t) + 4s) + 5\phi'(x + 5(s - t) + 4s)\, ds\\
+&= \phi(x - 5t) + \frac{1}{9}\int_{x - 5t}^{x + 4t}\psi(s)\, ds + \frac{5}{9}\int_{x - 5t}^{x + 4t}\phi'(u)\, du\\
+&= \frac{4}{9}\phi(x - 5t) + \frac{5}{9}\phi(x + 4t) + \frac{1}{9}\int_{x - 5t}^{x + 4t}\psi(s)\, ds.
+\end{align*}
+\hfill\qed
+
+\subsection*{Solution to Spring 2008, \#5}\label{s085}
+Let $f \in C_{c}^{\infty}(\R^{n})$. Then
+$$(\Delta - aI)\int_{\R^{n}}K_{a}(x - y)f(y)\, dy = f(x)$$
+and
+$$(\Delta - bI)\int_{\R^{n}}K_{b}(x - y)f(y)\, dy = f(x).$$
+Note that $(\Delta - aI)(\Delta - bI) = (\Delta - bI)(\Delta - aI).$
+Thus
+\begin{align}\label{s085eq1}
+\begin{aligned}
+(\Delta - aI)(\Delta - bI)\int_{\R^{n}}(c_{1}K_{a}(x - y) &+ c_{2}K_{b}(x - y))f(y)\, dy\\
+&= c_{1}(\Delta - bI)f(x) + c_{2}(\Delta - aI)f(x).
+\end{aligned}
+\end{align}
+Since we want $c_{1}K_{a} + c_{2}K_{b}$ to be a fundamental solution, we want the right hand
+side of \eqref{s085eq1} to equal $f(x)$. This is satisfied when
+\begin{align*}
+c_{1} + c_{2} &= 0\\
+bc_{1} + ac_{2} &= -1
+\end{align*}
+and hence $c_{1} = \frac{1}{a - b}$ and $c_{2} = -\frac{1}{a - b}.$
+\hfill\qed
+
+\subsection*{Solution to Spring 2008, \#6}\label{s086}
+We use a Fourier series expansion. We have
+\begin{align*}
+\wh{u}_{t}(k, t) &= \vep k^{2}\wh{u}(k, t) + (ik)^{6}\wh{u}(k, t)\\
+\wh{u}_{t}(k, t) &= (\vep k^{2} - k^{6})\wh{u}(k, t)\\
+\wh{u}(k, t) &= e^{(\vep k^{2} - k^{6})t}\wh{u}(k, 0).
+\end{align*}
+Therefore
+$$u(x, t) = \sum_{k \in \Z}e^{(\vep k^{2} - k^{6})t}\wh{u}(k, 0)e^{ikx}.$$
+For the PDE to always stay bounded as $t \rightarrow \infty$, we need
+$\vep k^{2} - k^{6} < 0$ for all $k \in \Z$, $k \neq 0$. Thus
+$\vep < k^{4}$ for all $k \in \Z$, $k \neq 0$. Therefore
+$\vep_{0} = 1$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2008, \#7}\label{s087}
+This is a good problem illustrating two major tricks: the first time argument and the $L^{p}$ trick.
+
+\subsubsection*{Solution to $(a)$}
+Fix a time interval of existence $[0, T]$.
+Fix $\vep > 0$ small and let
+$$v := u - \vep e^{(\beta/2)t}.$$
+We have
+\begin{align*}
+v_{t} &= u_{t} - \frac{\beta \vep}{2}e^{(\beta/2)t}\\
+\Delta v &= \Delta u\\
+\beta u(1 - u) &= \beta (v + \vep e^{(\beta/2)t})(1 - v - \vep e^{(\beta/2)t}).
+\end{align*}
+Then
+\begin{align*}
+u_{t} &= \Delta u + \beta u(1 - u)\\
+v_{t} + \frac{\beta \vep}{2}e^{(\beta/2)t} &= \Delta v + \beta (v + \vep e^{(\beta/2)t})(1 - v - \vep e^{(\beta/2)t}).
+\end{align*}
+Since $u(x, 0)$ is $ > 0$, if $\vep$ is made small enough, $v(x , 0) > 0$. Let
+$t_{0}$ be the first time $v$ hits $0$, that is $v(x_{0}, t_{0}) = 0$.
+Then $v_{t}(x_{0}, t_{0}) \leq 0$ and $\Delta v(x_{0}, t_{0}) \geq 0$
+since $v(x, t') > 0$ for $t' < t_{0}$ and $v(x, t_{0}) \geq 0$. Then at $(x_{0}, t_{0})$,
+\begin{align}\label{s087aeq1}
+\frac{\beta\vep}{2}e^{(\beta/2)t_{0}} & \geq \beta(\vep e^{(\beta/2)t_{0}})(1 - \vep e^{(\beta/2)t_{0}})\nonumber\\
+\frac{\vep}{2}e^{(\beta/2)t_{0}} & \geq \vep e^{(\beta/2)t_{0}} - \beta \vep^{2}e^{\beta t_{0}}.
+\end{align}
+This is a contradiction if $\vep$ is chosen to be sufficiently small. (Indeed, it suffices to choose
+$\vep < \frac{1}{2\beta e^{\beta T}}$ which would imply $\frac{1}{2}e^{(\beta/2)t_{0}} > \beta \vep e^{\beta T}$
+and hence contradict \eqref{s087aeq1}.) Therefore no such $(x_{0}, t_{0})$
+exists and hence $v(x, t) > 0$ for all $x, t$. Thus $u(x, t) > \vep e^{(\beta/2)t}$ for all $x, t$.
+\hfill\qed
+
+\subsubsection*{Solution to $(b)$}
+Without loss of generality we assume $T^{n} = [0, 1]^{n}$ (any other tori can be rescaled to the unit cube and hence will only change the constants
+that appear in argument). The PDE is the Fisher-KPP equation. We will assume that $\beta > 0$. An apriori bound is a bound on $u$ assuming that $u$ exists (hence
+the ``apriori" part).
+
+We present two solutions,
+the first solution is one that relies on the $L^{p}$ trick. This trick is more straightforward to start, however a bit more complicated (though routine) to finish.
+The second solution is applying a certain transformation on the solution and then using the maximum principle, however this approach relies
+on a clever substitution and the author only saw this upon finish the $L^{p}$ trick approach.\\
+
+\noindent \textit{$L^{p}$-trick Solution:} Let $E(t) := \int_{T^{n}}u^{p}\, dx$ with $p$ large. (We are defining $E(t)$
+to be the $L^{p}$ norm of $u$, implicitly here we have already used that $u$ is always positive by part $(a)$.) Then
+\begin{align*}
+\dot{E}(t) &= \int_{T^{n}}pu^{p - 1}u_{t}\, dx = \int_{T^{n}}pu^{p - 1}(\Delta u + \beta u(1 -u))\, dx\\
+&= \int_{T^{n}}pu^{p - 1}\Delta u\, dx + p\beta \int_{T^{n}}u^{p}(1 - u)\, dx\\
+&= -\int_{T^{n}}p\nabla(u^{p - 1}) \cdot \nabla u\, dx + p\beta\int_{T^{n}}u^{p}(1 - u)\, dx\\
+&= -\int_{T^{n}}p(p - 1)u^{p - 1}\abn{\nabla u}^{2}\, dx + p\beta \int_{T^{n}}u^{p}(1 - u)\, dx
+\end{align*}
+where the fourth equality is because of integration by parts and that there are no boundary terms since we are
+on a torus. By $(a)$, $u > 0$ for all $x \in T^{n}$ and $t \geq 0$. Thus
+$$\dot{E}(t) \leq p\beta \int_{T^{n}}u^{p}\, dx = p\beta E(t).$$
+By Gronwall's inequality,
+$$E(t) \leq e^{p\beta t}E(0) \leq e^{p\beta t}M^{p} = (e^{\beta t}M)^{p}.$$
+Therefore
+$$\nms{u}_{L^{p}(T^{n})} \leq e^{\beta t}M.$$
+Since $T^{n}$ is of finite measure, $\lim_{p \rightarrow \infty}\nms{u}_{L^{p}(T^{n})} = \nms{u}_{L^{\infty}(T^{n})}$ and hence
+$\nms{u}_{L^{\infty}(T^{n})} \leq e^{\beta t}M$. Since $u$ is smooth,
+$$\abn{u(x, t)} \leq e^{\beta t}M$$ for all $x \in T^{n}, t \geq 0$.\\
+
+\noindent \textit{Maximum Principle Solution:} Inspired by the above solution, we define $v := e^{-\beta t}u$.
+Then $\Delta v = e^{-\beta t}\Delta u$ and $v_{t} = -\beta e^{-\beta t}u + e^{-\beta t}u_{t}$.
+Since $u_{t} = \Delta u + \beta u(1 - u)$, multiplying both sides by $e^{-\beta t}$ yields that
+$$v_{t} = \Delta v - \beta vu = \Delta v - \beta e^{\beta t}v^{2}.$$
+By part $(a)$, as $v$ is always positive, $v_{t} < \Delta v$.
+
+Let $U_{T} := T^{n} \times (0, T]$ and $\Gamma_{T} := \ov{U_{T}} - U_{T}$. As $\ov{U_{T}} = T^{n} \times [0, T]$,
+$\Gamma_{T} = T^{n} \times \{t = 0\}$. Thus by the maximum principle,
+$\max_{\ov{U_{T}}}v = \max_{\Gamma_{T}}v$ and hence
+$$\max_{T^{n} \times [0, T]}v = \max_{T^{n} \times \{t = 0\}}v \leq M.$$
+Thus $e^{-\beta t}u \leq M$ for all $x \in T^{n}, t \geq 0$ which implies that $u(x, t) \leq e^{\beta t}M$
+for all $x \in T^{n}, t \geq 0$. Replacing $u$ with $-u$ shows
+that $|u(x, t)| \leq e^{\beta t}M$.
+\hfill\qed
+
+\subsection*{Solution to Spring 2008 \#8}\label{s088}
+\subsubsection*{Solution to $(a)$}
+This is an attempted (potentially incorrect) solution, the part we are worried about is when
+$(0, 0)$ is a nonstrict local minimum.
+
+If $(0, 0)$ is a strict local minimum, then use the Lyapunov function $H(x, y) - H(0, 0)$
+and $b > 0$ and we are done. If $(0, 0)$ is a nonstrict local minimum, then as $H$ is smooth,
+$H - H(0, 0)$ vanishes completely in a sufficiently small neighbourhood of $(0, 0)$.
+Note $\dot{x} = -bH_{x}(x, y)$ and $\dot{y} = -bH_{y}(x, y)$. Near $(0, 0)$, $\dot{x} = 0$
+and $\dot{y} = 0$. Thus solutions that start sufficiently near $(0, 0)$ don't change and so $(0, 0)$
+is stable.
+\hfill\qed
+
+\subsubsection*{Solution to $(b)$}
+We have $\dot{x} = -aH_{y}$, $\dot{y} = aH_{x}$. Then
+\begin{align*}
+\frac{d}{dt}H = H_{x}\dot{x} + H_{y}\dot{y} = H_{x}(-aH_{y}) + H_{y}(aH_{x}) = 0.
+\end{align*}
+Therefore $H$ is conserved along any forward or backward time trajectory.
+\hfill\qed
+
+\subsubsection*{Solution to $(c)$}
+Since the Hessian is positive definite at the origin and
+\begin{align*}
+H(x, y) &= H(0, 0) + \nabla H(0, 0) \cdot (x, y)\\
+&\quad\quad+ \frac{1}{2}\begin{pmatrix}  x & y \end{pmatrix}\begin{pmatrix}H_{xx}(0, 0) & H_{xy}(0, 0)\\H_{yx}(0, 0) & H_{yy}(0, 0)\end{pmatrix}\vct{x}{y} + O(x^{3} + x^{2}y + xy^{2} + y^{3})
+\end{align*}
+and $\nabla H(0, 0) = 0$, we have $H(x, y) > H(0, 0)$ for all $(x, y)$ sufficiently close to $(0, 0)$. Let
+$$V(x, y) := H(x, y) - H(0, 0).$$ Then $V(x, y) > 0$ for all $x \in B_{r}(0)$, $x \neq 0$ for some small $r$
+and $V(0, 0) = 0$. We also have
+\begin{align*}
+\dot{V}(x, y) = H_{x}\dot{x} + H_{y}\dot{y} = H_{x}(-aH_{y} - bH_{x}) + (aH_{x} - bH_{y})H_{y} = -b(H_{x}^{2} + H_{y}^{2}) < 0
+\end{align*}
+for all $(x, y)$ close to $(0, 0)$, $(x, y) \neq (0, 0)$. (Since $H_{x}^{2} + H_{y}^{2} = 0$
+implies $H_{x} = 0$ and $H_{y} = 0$ and since critical points are isolated, we can find a sufficiently small
+neighbourhood around $(0, 0)$ such that $(0, 0)$ is the only critical point of H.)
+Furthermore, $\dot{V}(0, 0) = 0$. Therefore $(0, 0)$ is asymptotically stable and hence
+there exists a neighbourhood of $(0, 0)$ such that all forward time trajectories converge to the origin.
+\hfill\qed
